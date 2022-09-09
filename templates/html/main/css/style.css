@@ -1,0 +1,43 @@
+.navbar-brand{
+    height: 60px;
+    color: white;
+}
+
+
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background: #041f7f;
+    background: linear-gradient(to right, #041f7f 0%, #748de8 100%, #748de8 50%, #748de8 0%, #041f7f 100%);
+    color: white;
+}
+
+.head{
+    background: #041f7f;
+    background: linear-gradient(to right, #041f7f 0%, #748de8 29%, #748de8 50%, #748de8 71%, #041f7f 100%);
+}
+
+.vertical-menu{
+    width: 100%;
+}
+.full{
+    height: 1000;
+}
+.footer{
+    margin-top: 139px;
+}
