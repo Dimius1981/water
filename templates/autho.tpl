@@ -10,10 +10,10 @@
     <h1>LOGO</h1>
   </div>
   <div class="flex-row">
-    <input id="username" class='lf--input form-control' placeholder='Логин' type='text' id="user-name" name="login">
+    <input id="username" class='lf--input form-control' placeholder='Логин' type='text' id="user-name" name="login" required>
   </div>
   <div class="flex-row">
-    <input id="password" class='lf--input form-control' placeholder='Пароль' type='password' id="user-pass" name="passwword">
+    <input id="password" class='lf--input form-control' placeholder='Пароль' type='password' id="user-password" name="passwword" required>
   </div>
   <button class='lf--submit' type='submit'>Войти</button>
   <a class='lf--forgot' href='#'>Забыли пароль?</a>

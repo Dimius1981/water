@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 	include('./configs/config.php'); //Настрйоки сайта
 	include('./core/libs/Smarty.class.php'); //Шаблонизатор

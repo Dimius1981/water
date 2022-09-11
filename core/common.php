@@ -1,27 +1,14 @@
 <?php
-	// if(isset($_GET['page'])){
-	// 	$page = $_GET['page'];
-	// 	}
-	// 	else{
-	// 		$page ='';
-	// 	}
-
-	// if(isset($_GET[''])){
-	// 	$group = $_GET[''];
-	// 	}
-	// 	else{
-	// 		$group = 0;
-	// 	}
-
 	// 	$path = './templates/';
 		
 	//Проверка на авторизацию
+	print_r($_POST);
 	if ((!empty($_POST['login'])) && (!empty($_POST['password']))){
+		echo "Authorization\n";
 		authorization($_POST['login'], $_POST['password']);
-		printf("1111");
-		header('location: main.tpl', true, 301);
-	} 
-
+		header('location: https://google.kz');
+		} 
+	
 	//Запрос информации
 	if (!isset($_SESSION['id'])) {
 		$session_id = -1;
@@ -54,7 +41,7 @@
 	//===================================================
 	if ($page == '') {
 		
-		$content = "{include file='templates/aytho.tpl'}";
+		
 		
 
 
