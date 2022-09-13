@@ -20,8 +20,7 @@
 
 	$user_info = userinfo($session_id);
 
-// if ($user_info) {
-// 		$cur_time_unix = $CUR_TIME;
+// if ($user_info) { 
 // 		$login_time_unix = strtotime($user_info['date_login']);
 
 // 		$user_time = $cur_time_unix - $login_time_unix;
