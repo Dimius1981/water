@@ -6,7 +6,7 @@
 <body>
 	{include file='header.tpl'}
 	{include file='aside.tpl'}
-	{include file='tablemain.tpl'}
+	{eval $Content}
 	{include file='footer.tpl'}
 </body>
 </html>

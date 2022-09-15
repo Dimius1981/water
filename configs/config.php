@@ -1,8 +1,8 @@
 <?php
-	$TITLE = 'Water';
+	$TITLE = 'water';
 
 	//Настройки подключения к ДБ
-	$HOST_DB = 'localhost';
+	$HOST_DB = '127.0.0.1';
 	$USER_DB = 'root';
 	$PASS_DB = '';
 	$NAME_DB = 'water';
@@ -11,4 +11,13 @@
 
 	//Текущее время
 	$CUR_TIME = time();
+
+	//Режим разработчика
+	if (isset($_GET['page'])) {$page = $_GET['page'];} else {$page = '';}
+	if (($page == 'addrec') ||
+	    ($page == 'listrec')) {
+	    $NOAUTH = 1;
+	} else {
+		$NOAUTH = 0; //1 = true, 0 = false
+	}
 ?>

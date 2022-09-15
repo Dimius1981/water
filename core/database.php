@@ -12,7 +12,9 @@ if (mysqli_connect_errno()){
 function authorization($login, $password){
 	global $connect;
 
-	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$password'";
+	$new_pass = MD5($password);
+	//echo $new_pass;
+	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$new_pass'";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		echo "MySQL Error: ".mysqli_error($connect)."</br>";
@@ -38,15 +40,70 @@ function userinfo($session_id){
 	}
 }
 
-// function usertimeupdate($user_id){
-// 	global $connect;
+function usertimeupdate($user_id){
+	global $connect;
 
-// 	$sql = "UPDATE users SET date_login = NOW() WHERE id = ".$user_id;
-// 	$result = @mysqli_query($connect, $sql);
-// 	if (!$result) {
-// 		echo "MySQL Error: ".mysqli_error($connect)."</br>";
-// 		echo "SQL = \"". $sql . "\"";
-// 	}
-// }
+	$sql = "UPDATE users SET date_login = NOW() WHERE id = ".$user_id;
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+	}
+}
+
+
+// Выход из системы
+function userlogout($userid) {
+	global $connect;
+
+	$sql = "UPDATE user SET date_logout = NOW() WHERE id = ".$userid;
+	@mysqli_query($connect, $sql);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Добавляет новую запись в таблицу records
+function add_record($sensor_id, $level, $bat, $rashod) {
+	global $connect;
+
+	$sql = "INSERT INTO records(id, sensor_id, level, bat, rashod, date_insert) VALUES (NULL, $sensor_id, $level, $bat, $rashod, NOW());";
+
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		//echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		//echo "SQL = \"". $sql . "\"";
+		return 0;
+	} else {
+		return mysqli_insert_id($connect);
+	}
+}
+
+
+
+
+function list_records($sensor_id){
+	global $connect;
+
+	$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+	} else {
+		return $result;
+	}
+}
+
 
 ?>

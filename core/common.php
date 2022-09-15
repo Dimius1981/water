@@ -1,60 +1,66 @@
 <?php
-	// 	$path = './templates/';
-		
-	//Проверка на авторизацию
-	print_r($_POST);
-	if ((!empty($_POST['login'])) && (!empty($_POST['password']))){
-		echo "Authorization\n";
-		authorization($_POST['login'], $_POST['password']);
-		header('location: https://google.kz');
-		} 
-	
-	//Запрос информации
+	if(isset($_GET['page'])){
+		$page = $_GET['page'];
+	}else{
+		$page ='';
+	}
+
 	if (!isset($_SESSION['id'])) {
 		$session_id = -1;
-
-	} else{
+	} else {
 		$session_id = $_SESSION['id'];
 	}
-	
 
 	$user_info = userinfo($session_id);
+	//print_r($user_info);
 
-// if ($user_info) { 
-// 		$login_time_unix = strtotime($user_info['date_login']);
+if ($user_info) {
+	$login_time_unix = strtotime($user_info['date_login']);
 
-// 		$user_time = $cur_time_unix - $login_time_unix;
+	$user_time = $cur_time_unix - $login_time_unix;
 
 
-// 		//Проверка на выход пользователя
-// 		if ((isset($_GET['logout'])) || ($user_time > $TIME_LIVE)) {
-// 			session_destroy();
-// 			header('Location: ./', true, 301); //После выхода перенаправляемся на главную страницу
-// 		} else {
-// 			usertimeupdate($session_id);
-// 		}
-// 	}
+	//Проверка на выход пользователя
+	if ((isset($_GET['logout'])) || ($user_time > $TIME_LIVE)) {
+		userlogout($_SESSION['id']);
+		session_destroy();
+		header('Location: ./login.php', true, 301); //После выхода перенаправляемся на главную страницу
+	} else {
+		usertimeupdate($session_id);
+	}
+}
 
 
 	//Главная страница
 	//===================================================
 	if ($page == '') {
+		$content = "{include file='tablemain.tpl'}";
 		
 		
-		
+
+
+
+	//Страница добавления новой записи
+	//===================================================
+	} elseif ($page == 'addrec') {
+		$content = 'Add record page';
 
 
 
 
-	// //Магазине...
-	// //===================================================	
-	} elseif ($page == 'main'){
-		
 
-	
+	//Страница отображает последние 30 записей в порядке убывания
+	//===================================================
+	} elseif ($page == 'listrec') {
+		$content = "{include file='listrec.tpl'}";
 
 
-	} else{
+
+
+
+	//Страница 404
+	//===================================================
+	} else {
 		$content = '<h3> 404 page</h3>';
 	
 	}
