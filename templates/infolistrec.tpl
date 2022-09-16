@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>main</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" href="js/bootstrap.min.js"></script>
-  <script type="text/javascript" href="js/script.js"></script>
-  <script type="text/javascript" href="js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-  
-<body>
-
-  <br>
+<div class="col-md-9">
+<br>
+  <h2>Имя датчика </h2>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
@@ -31,7 +17,7 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="home" class="container tab-pane active mr3"><br>
-     <table class="table ">
+     <table class="table">
           <thead class="table">
             <tr>
               <th>ID</th>
@@ -106,7 +92,4 @@
   </table>
     </div>
   </div>
-
-</body>
-
-</html>
+  </div>
