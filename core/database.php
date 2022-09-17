@@ -13,7 +13,7 @@ function authorization($login, $password){
 	global $connect;
 
 	$new_pass = MD5($password);
-	//echo $new_pass;
+	echo $new_pass;
 	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$new_pass'";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
@@ -21,8 +21,10 @@ function authorization($login, $password){
 		echo "SQL = \"". $sql . "\"";
 	} else {
 		$res_arr = mysqli_fetch_assoc($result);
-		$_SESSION['id'] = $res_arr['id'];
-		usertimeupdate($res_arr['id']);
+		if ($res_arr) {
+			$_SESSION['id'] = $res_arr['id'];
+			usertimeupdate($res_arr['id']);
+		}
 	}
 
 }
@@ -74,10 +76,10 @@ function userlogout($userid) {
 
 
 // Добавляет новую запись в таблицу records
-function add_record($sensor_id, $level, $bat, $rashod) {
+function add_record($sensor_id, $level, $bat, $rashod, $reset, $lastcode) {
 	global $connect;
 
-	$sql = "INSERT INTO records(id, sensor_id, level, bat, rashod, date_insert) VALUES (NULL, $sensor_id, $level, $bat, $rashod, NOW());";
+	$sql = "INSERT INTO records(id, sensor_id, level, bat, rashod, date_insert, reset, lastcode) VALUES (NULL, $sensor_id, $level, $bat, $rashod, NOW(), '$reset', $lastcode);";
 
 	@mysqli_query($connect, $sql);
 	if (mysqli_error($connect)) {
@@ -95,7 +97,7 @@ function add_record($sensor_id, $level, $bat, $rashod) {
 function list_records($sensor_id){
 	global $connect;
 
-	$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC;";
+	$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC LIMIT 30;";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		echo "MySQL Error: ".mysqli_error($connect)."</br>";

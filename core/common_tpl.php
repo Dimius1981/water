@@ -45,7 +45,21 @@
 			$bat = 0;
 		}
 
-		echo add_record($sens_id, $level, $bat, 0);
+		//Статус сброса датчика
+		if (isset($_GET['reset'])) {
+			$reset = $_GET['reset'];
+		} else {
+			$reset = '';
+		}
+
+		//Код последнего HTTP запроса
+		if (isset($_GET['lastcode'])) {
+			$lastcode = $_GET['lastcode'];
+		} else {
+			$lastcode = '';
+		}
+
+		echo add_record($sens_id, $level, $bat, 0, $reset, $lastcode);
 
 
 

@@ -6,6 +6,8 @@
 			<th>Bat</th>
 			<th>Rashod</th>
 			<th>Date Time</th>
+			<th>Reset status</th>
+			<th>Last HTTP Code</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,6 +18,8 @@
 				<td>{$item.bat}</td>
 				<td>{$item.rashod}</td>
 				<td>{$item.date_insert}</td>
+				<td>{$item.reset}</td>
+				<td>{$item.lastcode}</td>
 			</tr>
 		{/foreach}
 	</tbody>
