@@ -13,7 +13,7 @@ function authorization($login, $password){
 	global $connect;
 
 	$new_pass = MD5($password);
-	echo $new_pass;
+	//echo $new_pass;
 	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$new_pass'";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {

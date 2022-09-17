@@ -9,7 +9,7 @@
 
 	if (!empty($_POST['login']) && !empty($_POST['password'])) {
 		authorization($_POST['login'], $_POST['password']);
-		//header('Location: ./', true, 301);
+		header('Location: ./', true, 301);
 	}
 	if (isset($_GET['logout'])) {
 		userlogout($_SESSION['id']);
