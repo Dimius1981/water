@@ -1,4 +1,5 @@
 <table>
+	<h3>Время работы: {$sensor_date_live}</h3>
 	<thead>
 		<tr>
 			<th>ID</th>

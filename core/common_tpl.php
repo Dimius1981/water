@@ -76,6 +76,9 @@
 			$sens_id = 0;
 		}
 
+		$tpl->assign('PageTitle', 'Данные датчика '.$sens_id);
+		$tpl->assign('Content', $content);
+
 		$list_rec_obj = list_records($sens_id);
 		$list_rec_arr = Array();
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
@@ -83,7 +86,22 @@
 		}
 		$tpl->assign('listrec', $list_rec_arr);
 
-		$tpl->display('listrec.tpl');
+		$last_rec = mysqli_fetch_assoc(last_record($sens_id));
+
+		$sensor_info = mysqli_fetch_assoc(get_sensor_by_id($sens_id));
+
+		$last_date = date_create($last_rec['date_insert']);
+		$start_date = date_create($sensor_info['start_work']);
+		$sensor_date_live = date_diff($last_date, $start_date);
+
+		//print_r($sensor_info);
+
+		//echo "start_work = ".$sensor_info['start_work']."</br>";
+		//echo "last_date = ".$last_rec['date_insert'];
+
+		$tpl->assign('sensor_date_live', $sensor_date_live->format("%d д. %H:%i:%s"));
+
+		$tpl->display('empty.tpl');
 
 
 

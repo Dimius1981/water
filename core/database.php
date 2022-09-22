@@ -93,7 +93,7 @@ function add_record($sensor_id, $level, $bat, $rashod, $reset, $lastcode) {
 
 
 
-
+//Функция выводит последние 30 записей датчика sensor_id
 function list_records($sensor_id){
 	global $connect;
 
@@ -107,5 +107,43 @@ function list_records($sensor_id){
 	}
 }
 
+
+
+
+
+
+//Функция выводит последнюю запись датчика sensor_id
+function last_record($sensor_id){
+	global $connect;
+
+	$sql = "SELECT * FROM records WHERE date_insert = (SELECT MAX(date_insert) FROM records WHERE sensor_id = $sensor_id) AND sensor_id = $sensor_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+	} else {
+		return $result;
+	}
+}
+
+
+
+
+
+
+
+//Функция выводит запись о датчике $sensor_id
+function get_sensor_by_id($sensor_id){
+	global $connect;
+
+	$sql = "SELECT * FROM sensors WHERE factorynumber = $sensor_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+	} else {
+		return $result;
+	}
+}
 
 ?>
