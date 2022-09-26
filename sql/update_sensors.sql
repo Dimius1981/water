@@ -1,0 +1,1 @@
+ALTER TABLE `sensors` ADD `start_work` DATETIME NOT NULL DEFAULT '2022-09-19 14:41:48' AFTER `gsmnum`;
