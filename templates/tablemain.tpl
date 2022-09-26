@@ -1,13 +1,21 @@
+<div class="col-md-9">
 <br>
 <div class="row">
   <div class="col-md-3">
     <h2>Датчики </h2>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-5">
 
   </div>
-  <div class="col-md-1">
-    <img src="download.png">
+  <div class="col-md-4">
+<div class="example-3">
+  <label for="custom-file-upload" class="filupp">
+    <span class="filupp-file-name js-value">Загрузить файл</span>
+    <input type="file" name="attachment-file" value="1" id="custom-file-upload">
+  </label>
+</div>
+ 
+
   </div>
 </div>
 

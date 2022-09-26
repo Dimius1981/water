@@ -128,3 +128,59 @@
 .mr1{
 	margin-right: 140px;
 }
+.navbar-brand{
+    height: 60px;
+    color: white;
+}
+
+
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background: #041f7f;
+    background: linear-gradient(to right, #041f7f 0%, #748de8 100%, #748de8 50%, #748de8 0%, #041f7f 100%);
+    color: white;
+}
+
+.head{
+    background: #041f7f;
+    background: linear-gradient(to right, #041f7f 0%, #748de8 29%, #748de8 50%, #748de8 71%, #041f7f 100%);
+}
+
+.vertical-menu{
+    width: 100%;
+}
+.full{
+    height: 1000;
+}
+.mr3{
+    margin-left: 0px;
+}
+
+.example-3{box-sizing:border-box}
+.example-3{position:relative;font:1em/1.6 "Varela Round",Arial,sans-serif;color:#999;font-weight:400;max-width:25em;}
+.example-3 h2{font-weight:400}
+.example-3 .filupp > input[type="file"]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.example-3 .filupp{position:relative;background:#041f7f;display:block;padding:1em;font-size:1em;width:80%;height:3.5em;color:#fff;cursor:pointer;box-shadow:0 1px 3px #041f7f}
+.example-3 .filupp:before{content:"";position:absolute;top:1.5em;right:.75em;width:2em;height:1.25em;border:3px solid #fff;border-top:0;text-align:center}
+.example-3 .filupp:after{content:"\f178";font-family: FontAwesome;-webkit-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg);position:absolute;top:.65em;right:.45em;font-size:2em;color:#fff;line-height:0}
+.example-3 .filupp-file-name{width:75%;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal}
+.example-3 {
+	margin-left: 80px;
+
+}
