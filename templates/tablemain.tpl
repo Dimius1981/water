@@ -7,7 +7,7 @@
 
   </div>
   <div class="col-md-1">
-    <img src="download.png">
+    <img src="templates/image/download.png">
   </div>
 </div>
 
@@ -31,8 +31,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -42,8 +42,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-danger">
@@ -53,8 +53,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
 
@@ -65,8 +65,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -76,8 +76,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -87,8 +87,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -98,8 +98,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -109,8 +109,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
     <tr class="table-primary">
@@ -120,8 +120,8 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
       </td>
     </tr>
 
