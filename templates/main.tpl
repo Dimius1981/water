@@ -4,16 +4,11 @@
 	{include file='head.tpl'}
 </head>
 <body>
-  {include file='header.tpl'}
-  <div class="container-fluid" style="padding-left: calc(var(--bs-gutter-x) )">
-    <div class="row">
-		{include file='aside.tpl'}
-      	<div class="col-md-9">
-      		{eval $Content}
-      	</div>
-    </div>
-  </div>
-  <footer class="footer">
+	{include file='header.tpl'}
+	<div class="row">
+	{include file='aside.tpl'}
+	{eval $Content}
+	</div>
 	{include file='footer.tpl'}
   </footer>
 </body>

@@ -16,6 +16,14 @@
 		$tpl->assign('PageTitle', 'Main page');
 		$tpl->assign('Content', $content);
 
+		//функция для выделении таблиц
+		//зеленый цвет - датчик регулярно выходит на связь; желтый цвет - датчик не выходит на связь уже 3 раза; красный цвет - датчик не выходит на связь более 3 раз
+		//$res = ...
+        //<? while ($row = mysql_fetch_array($res)) {
+		//if($row['status']==1){$bg='.table-success';{}
+		//ifelse{$bg='.table-warning';}{}
+		//else{$bg='.table-danger';}{}}
+		//} 
 		$tpl->display('main.tpl');
 
 
