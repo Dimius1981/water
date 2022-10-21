@@ -156,13 +156,11 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-<<<<<<< HEAD
-        <button type="button" class="btn btn-secondary"><img src="delele.png"></button>
-        <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
-=======
+
+        
         <button type="button" class="btn btn-secondary"><img src="templates/image/pen.png"></button>
         <button type="button" class="btn btn-secondary"><img src="templates/image/setting.png"></button>
->>>>>>> 0777a8dd91055fe32359fe1a75b6e52d968dc914
+
       </td>
     </tr>
 
