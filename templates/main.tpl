@@ -10,5 +10,6 @@
 	{eval $Content}
 
 	{include file='footer.tpl'}
+  </footer>
 </body>
 </html>

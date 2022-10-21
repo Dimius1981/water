@@ -6,6 +6,7 @@
 
 	// http://myshop/?page=about
 	$tpl->assign('user_info', $user_info);
+	$tpl->assign('cur_time', @date('Y.d.m H:i:s', $CUR_TIME));
 		
 		
 
