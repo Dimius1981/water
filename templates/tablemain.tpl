@@ -1,11 +1,39 @@
-<div class="col-md-9">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
 <br>
 <div class="row">
-  <div class="col-md-3">
-    <h2>Датчики </h2>
+  <div class="col-md-2">
+    <h2>Датчики <a href=""><img src="./templates/images/add.png"></a></h2>
+    
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
+    <div class="row">
+  <div class="col-md-12">
+  <ul class="nav nav">
+  <li class="nav-item">
+    <a class="nav-link active" data-bs-toggle="pill" href="#home">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="pill" href="#menu1">Загрузка</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="pill" href="#menu2">Журнал</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="pill" href="#menu2">Пользователи</a>
+  </li>
+</ul>
 
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane container active" id="home"></div>
+  <div class="tab-pane container fade" id="menu1"></div>
+  <div class="tab-pane container fade" id="menu2"></div>
+</div>
+</div>
+ 
+</div>
   </div>
   <div class="col-md-4">
 <div class="example-3">
@@ -128,10 +156,13 @@
       <td>11.11.2022</td>
       <td>77777</td>
       <td>
-        <button type="button" class="btn btn-secondary"><img src="pen.png"></button>
+        <button type="button" class="btn btn-secondary"><img src="delele.png"></button>
         <button type="button" class="btn btn-secondary"><img src="setting.png"></button>
       </td>
     </tr>
 
   </tbody>
 </table>
+<div class="col-md-1">
+</div>
+</div>
