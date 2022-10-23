@@ -1,4 +1,6 @@
-<div class="col-md-9">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
   <br>
       <h2>Загрузки</h2>
   <hr>
@@ -36,4 +38,6 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="col-md-1">
 </div>
