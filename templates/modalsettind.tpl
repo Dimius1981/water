@@ -1,5 +1,5 @@
 <form action="/" method="post">
-  <div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+  <div class="modal" id="setSensorsModal" tabindex="-1" aria-labelledby="setSensorsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,7 +36,7 @@
                     <input type="text" class="form-control" id="user-name" name="login" placeholder="Номер">
                   </div>
                   <div class="col-md-12">
-                    <label for="user-description" class="col-form-label">Описание группы</label>
+                    <label for="user-description" class="col-form-label">Описание датчика</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   <div class="col-md-6">

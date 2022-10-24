@@ -2,10 +2,7 @@
 	float: left;
 
 }
-.container{
-	width: 1200px;
-	min-width: 1200px;
-}
+
 .textnan{
 	color: #969696;
 }
@@ -184,3 +181,31 @@
 	margin-left: 80px;
 
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1 0 auto;
+}
+
+.footer{
+	flex: 0 0 auto;
+	background: #041f7f;
+    background: linear-gradient(to right, #041f7f 0%, #748de8 29%, #748de8 50%, #748de8 71%, #041f7f 100%);
+}
+
+.modaladdrec{
+	border:none;
+}
+
