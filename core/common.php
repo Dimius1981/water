@@ -1,4 +1,46 @@
 <?php
+//Класс log-файла
+class logFile {
+	var $file = "";
+
+	function init() {
+	global $LOGS_PATH;
+		$this->file = $LOGS_PATH.@date("Ymd", time()+$LOCAL_TIME).".log";
+		//echo $this->file;
+	}
+
+	function write($str, $f_time = TRUE) {
+		$fp = fopen($this->file, 'a');
+		if ($fp) {
+            if ($f_time) {
+            	fwrite($fp, @date("H:i:s", time()+$LOCAL_TIME)." | ".$str);
+            } else {
+            	fwrite($fp, $str);
+            }
+
+			fclose($fp);
+		}
+	}
+
+	function writeln($str, $f_time = TRUE) {
+		$fp = fopen($this->file, 'a');
+		if ($fp) {
+            if ($f_time) {
+				fwrite($fp, @date("H:i:s", time()+$LOCAL_TIME)." | ".$str."\r\n");
+			} else {
+				fwrite($fp, $str."\r\n");
+			}
+
+			fclose($fp);
+		}
+	}
+
+} // logFile
+
+//Создадим и инициируем объект log-файла
+$log = new logFile;
+$log->init();
+
 	if(isset($_GET['page'])){
 		$page = $_GET['page'];
 	}else{

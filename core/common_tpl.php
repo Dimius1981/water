@@ -16,6 +16,8 @@
 		$tpl->assign('PageTitle', 'Main page');
 		$tpl->assign('Content', $content);
 
+		$log -> writeln("Main page");
+
 		//функция для выделении таблиц
 		//зеленый цвет - датчик регулярно выходит на связь; желтый цвет - датчик не выходит на связь уже 3 раза; красный цвет - датчик не выходит на связь более 3 раз
 		//$res = ...
@@ -68,6 +70,9 @@
 			$lastcode = '';
 		}
 
+		$log -> writeln("Add new rec:");
+		$log -> writeln("sens_id = ".$sens_id.", level = ".$level.
+			", bat = ".$bat.", reset = ".$reset);
 		echo add_record($sens_id, $level, $bat, 0, $reset, $lastcode);
 
 
@@ -84,6 +89,8 @@
 		} else {
 			$sens_id = 0;
 		}
+
+		$log -> writeln("listrec page for sensor_id: ".$sens_id);
 
 		$tpl->assign('PageTitle', 'Данные датчика '.$sens_id);
 		$tpl->assign('Content', $content);
@@ -122,6 +129,8 @@
 	} else {
 		$tpl->assign('PageTitle', '404');
 		$tpl->assign('Content', $content);
+
+		$log -> writeln("Error 404. Page \"".$page."\" not found!");
 		
 		$tpl->display('main.tpl');
 

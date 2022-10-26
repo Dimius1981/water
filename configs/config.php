@@ -1,6 +1,9 @@
 <?php
 	$TITLE = 'water';
 
+	//путь к папке с log-файлами
+	$LOGS_PATH = './logs/';
+
 	//Настройки подключения к ДБ
 	$HOST_DB = '127.0.0.1';
 	$USER_DB = 'root';
