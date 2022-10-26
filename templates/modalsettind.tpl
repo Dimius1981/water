@@ -1,5 +1,5 @@
 <form action="/" method="post">
-  <div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+  <div class="modal" id="setSensorsModal" tabindex="-1" aria-labelledby="setSensorsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -20,10 +20,12 @@
           </ul>
 
         </div>
+
         <div class="modal-body">
           <div class="modal-body">
             <div class="tab-content">
               <div id="home" class="container tab-pane active">
+
                 <div class="row">
                   <div class="col-md-6">
                     <label for="user-name" class="col-form-label">Имя</label>
@@ -34,7 +36,7 @@
                     <input type="text" class="form-control" id="user-name" name="login" placeholder="Номер">
                   </div>
                   <div class="col-md-12">
-                    <label for="user-description" class="col-form-label">Описание группы</label>
+                    <label for="user-description" class="col-form-label">Описание датчика</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                   <div class="col-md-6">
@@ -48,27 +50,55 @@
                 </div>
               </div>
               <div id="menu1" class="container tab-pane fade">
+                <div class="btn-group">
+                <button type="button" class="btn btn-success">Добавить</button>
+                <button type="button" class="btn btn-danger">Удалить</button>
+                <button type="button" class="btn btn-secondary">Изменить</button>
+                </div>
+
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Дата</th>
-                      <th>Расход</th>
+                      <th>№</th>
+                      <th>Уровень (см)</th>
+                      <th>Расход (м3)</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0</td> 
+                     <td> <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                      <label class="form-check-label"></label>
+                    </div>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td> <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                      <label class="form-check-label"></label>
+                    </div>
+                    </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td> <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                      <label class="form-check-label"></label>
+
+                    </div>
+                    </td>
 
                     </tr>
-                    <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
-                    </tr>
-                    <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
-                    </tr>
+                    <button type="button" class="btn btn-light">Очистить</button>
                   </tbody>
                 </table>
               </div>

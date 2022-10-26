@@ -120,6 +120,41 @@
 		$tpl->display('empty.tpl');
 
 
+	//Страница отображает загруженные файлы
+	//===================================================
+	} elseif ($page == 'downloads') {
+		$tpl->assign('PageTitle', 'Downloads');
+		$tpl->assign('Content', $content);
+
+		$tpl->display('main.tpl');
+
+
+
+
+
+	//Страница редактирования пользователей(админ)
+	//===================================================
+	} elseif ($page == 'users') {
+		$tpl->assign('PageTitle', 'Users');
+		$tpl->assign('Content', $content);
+
+		$tpl->display('main.tpl');
+
+
+
+
+
+
+
+	//Страница Журнал
+	//===================================================
+	} elseif ($page == 'logs') {
+		$tpl->assign('PageTitle', 'Logs');
+		$tpl->assign('Content', $content);
+
+		$tpl->display('main.tpl');
+
+
 
 
 

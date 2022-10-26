@@ -1,4 +1,4 @@
-<div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModal" aria-hidden="true">
+<div class="modal" id="delSensorsModal" tabindex="-1" aria-labelledby="delSensorsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
           <div class="tab-content">
-            <p>Вы действительно хотите удалить данный датчик?</p>
+            <p>Вы действительно хотите удалить (имя датчика) датчик?</p>
           </div>
         </div>
         <div class="modal-footer">
