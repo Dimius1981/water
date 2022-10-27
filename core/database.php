@@ -153,4 +153,43 @@ function get_sensor_by_id($sensor_id){
 	}
 }
 
+
+
+
+//Функция выводит список датчиков
+function list_sensors(){
+	global $connect;
+	global $log;
+
+	$sql = "SELECT * FROM sensors ORDER BY factorynumber;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+	} else {
+		return $result;
+	}
+}
+
+
+
+
+// Добавляет новую запись в таблицу sensors
+function add_sensor($factorynumber, $name, $description, $high, $gsmnum) {
+	global $connect;
+	global $log;
+
+	$sql = "INSERT INTO sensors(id, factorynumber, name, lastindication, date, sum, description, model, high, gsmnum, start_work) VALUES (NULL, $factorynumber, '$name', 0, NOW(), 0, '$description', 'МСД-1', $high, '$gsmnum', NOW());";
+
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return mysqli_insert_id($connect);
+	}
+}
+
+
 ?>

@@ -7,14 +7,15 @@
 	// http://myshop/?page=about
 	$tpl->assign('user_info', $user_info);
 	$tpl->assign('cur_time', @date('Y.d.m H:i:s', $CUR_TIME));
-		
+	$tpl->assign('page', $page);
+	$tpl->assign('Content', $content);
+	$tpl->assign('scripts', $scripts);
 		
 
 	// Главная страница
 	//===================================================
 	if ($page == '') {
 		$tpl->assign('PageTitle', 'Main page');
-		$tpl->assign('Content', $content);
 
 		$log -> writeln("Main page");
 
@@ -26,6 +27,27 @@
 		//ifelse{$bg='.table-warning';}{}
 		//else{$bg='.table-danger';}{}}
 		//} 
+
+		$sensors_res = list_sensors();
+		$sensors_arr = Array();
+		while($row = mysqli_fetch_assoc($sensors_res)) {
+			//Запросим последнюю запись сделанную датчиком
+			$last_record = mysqli_fetch_assoc(last_record($row['id']));
+			$row['last_level'] = $last_record['level'];
+			$row['last_rashod'] = $last_record['rashod'];
+			$row['last_bat'] = $last_record['bat'];
+			$row['last_date'] = $last_record['date_insert'];
+
+			$last_date = date_create($last_record['date_insert']);
+			$start_date = date_create($row['start_work']);
+			$sensor_date_live = date_diff($last_date, $start_date);
+			$row['sensor_date_live'] = $sensor_date_live->format("%d д. %H:%i:%s");
+
+			$row['row_style'] = "table-primary";
+			$sensors_arr[] = $row;
+		}
+
+		$tpl->assign('sensors_list', $sensors_arr);
 		$tpl->display('main.tpl');
 
 
@@ -93,7 +115,6 @@
 		$log -> writeln("listrec page for sensor_id: ".$sens_id);
 
 		$tpl->assign('PageTitle', 'Данные датчика '.$sens_id);
-		$tpl->assign('Content', $content);
 
 		$list_rec_obj = list_records($sens_id);
 		$list_rec_arr = Array();
@@ -124,7 +145,6 @@
 	//===================================================
 	} elseif ($page == 'downloads') {
 		$tpl->assign('PageTitle', 'Downloads');
-		$tpl->assign('Content', $content);
 
 		$tpl->display('main.tpl');
 
@@ -136,7 +156,6 @@
 	//===================================================
 	} elseif ($page == 'users') {
 		$tpl->assign('PageTitle', 'Users');
-		$tpl->assign('Content', $content);
 
 		$tpl->display('main.tpl');
 
@@ -150,7 +169,6 @@
 	//===================================================
 	} elseif ($page == 'logs') {
 		$tpl->assign('PageTitle', 'Logs');
-		$tpl->assign('Content', $content);
 
 		$tpl->display('main.tpl');
 
@@ -163,7 +181,6 @@
 	//===================================================
 	} else {
 		$tpl->assign('PageTitle', '404');
-		$tpl->assign('Content', $content);
 
 		$log -> writeln("Error 404. Page \"".$page."\" not found!");
 		

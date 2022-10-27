@@ -72,12 +72,13 @@ if ($user_info) {
 	}
 }
 
+$scripts = '';
 
 	//Главная страница
 	//===================================================
 	if ($page == '') {
 		$content = "{include file='tablemain.tpl'}";
-		
+		$scripts = '<script src="templates/js/sensors.js"></script>';
 		
 
 

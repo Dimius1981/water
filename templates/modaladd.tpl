@@ -1,79 +1,64 @@
-<form action="/" method="post">
-  <div class="modal" id="addSensorsModal" tabindex="-1" aria-labelledby="addSensorsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+<div class="modal fade" id="addSensorsModal" tabindex="-1" aria-labelledby="addSensorsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="add_sensors">
         <div class="modal-header">
           <h4>Добавить датчик</h4>
-          <br>
         </div>
         <div class="modal-body">
-          <div class="modal-body">
-            <div class="tab-content">
-              <div id="home" class="container tab-pane active">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="user-name" class="col-form-label">Имя</label>
-                    <input type="text" class="form-control" id="user-name" name="login" placeholder="Имя">
-                  </div>
-
-                  <div class="col-md-6">
-                    <label for="user-par-id" class="col-form-label">Номер</label>
-                    <input type="text" class="form-control" id="user-name" name="login" placeholder="Номер">
-                  </div>
-                  <div class="col-md-12">
-                    <label for="user-description" class="col-form-label">Описание датчика</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="user-name" class="col-form-label">Телефон</label>
-                    <input type="text" class="form-control" id="user-name" name="login" placeholder="Телефон">
-                  </div>
-                  <div class="col-md-6">
-                    <label for="user-par-id" class="col-form-label">Высота</label>
-                    <input type="text" class="form-control" id="user-name" name="login" placeholder="Высота">
-                  </div>
-                </div>
-              </div>
-
-              <div id="menu1" class="container tab-pane fade">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Дата</th>
-                      <th>Расход</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
-
-                    </tr>
-                    <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
-                    </tr>
-                    <tr>
-                      <td>22.12.2022</td>
-                      <td>77777</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div id="menu2" class="container tab-pane fade">
-                <label for="user-description" class="col-form-label">Информация</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Connect...."></textarea>
-
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="add_sensor_name" class="col-form-label">Имя</label>
+                <input type="text" class="form-control" id="add_sensor_name" name="add_sensor_name" placeholder="Имя">
               </div>
             </div>
 
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="add_sensor_number" class="col-form-label">Номер</label>
+                <input type="number" class="form-control" id="add_sensor_number" name="add_sensor_number" placeholder="Номер" min="1">
+              </div>
+            </div>
+
+            <!--<div class="col-md-5">
+              <div class="form-group">
+                <label for="add_sensor_model" class="col-form-label">Модель</label>
+                <select class="form-control" id="add_sensor_model" name="add_sensor_model">
+                  <option value="1">МСД-1</option>
+                  <option value="2">ДУВ-2</option>
+                </select>
+              </div>
+            </div>-->
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="add_sensor_description" class="col-form-label">Описание датчика</label>
+                <textarea class="form-control" id="add_sensor_description" rows="3" name="add_sensor_description" placeholder="Описание датчика"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="add_sensor_phone" class="col-form-label">Телефон</label>
+                <input type="text" class="form-control" id="add_sensor_phone" name="add_sensor_phone" placeholder="Телефон">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="add_sensor_seth" class="col-form-label">Высота от датчика, см</label>
+                <input type="number" class="form-control" id="add_sensor_seth" name="add_sensor_seth" placeholder="Высота от датчика, см">
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger ">Отмена</button>
-          <button type="submit" class="btn btn-primary">Добавить</button> 
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
+          <button type="submit" class="btn btn-primary">Добавить</button>
         </div>
-      </div>
-
+      </form>
     </div>
-</form>
+
+  </div>
+</div>

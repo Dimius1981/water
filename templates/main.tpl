@@ -9,21 +9,27 @@
   <div class="wrapper">
     {include file='header.tpl'}
 
-    <div class="content">
+    <div class="content px-3">
       {eval $Content}
-
     </div>
 
     <footer class="footer">
       {include file='footer.tpl'}
     </footer>
-{include file ='modaldelete.tpl'}
-{include file ='modaladd.tpl'}
-{include file ='modalsettind.tpl'}
-{include file ='modaladduser.tpl'}
-{include file ='modaldeluser.tpl'}
-{include file ='modaledituser.tpl'}
+
   </div>
+
+{if $page == ""}
+  {include file ='modaldelete.tpl'}
+  {include file ='modaladd.tpl'}
+  {include file ='modalsettind.tpl'}
+{/if}
+
+{if $page == "users"}
+  {include file ='modaladduser.tpl'}
+  {include file ='modaldeluser.tpl'}
+  {include file ='modaledituser.tpl'}
+{/if}
 
 </body>
 

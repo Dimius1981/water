@@ -1,7 +1,5 @@
 <div class="row">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-10">
+  <div class="col-md">
     <br>
     <div class="row">
       <div class="col-md-3">
@@ -50,123 +48,35 @@
     <table class="table ">
       <thead class="table">
         <tr>
-          <th>Заводской номер датчика</th>
+          <th>Номер</th>
           <th>Имя</th>
-          <th>Показания расхода воды</th>
-          <th>Дата</th>
-          <th>Общий накопленный расход </th>
+          <th>Уровень, см</th>
+          <th>Расход воды, м<sup>3</sup></th>
+          <th>Сумм. расход, м<sup>3</sup></th>
+          <th>Заряд батареи</th>
+          <th>Дата обновления</th>
+          <th>Время работы</th>
           <th>Действия</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
+        {foreach $sensors_list as $item}
+        <tr class="{$item.row_style}">
+          <td align="center">{$item.factorynumber}</td>
+          <td>{$item.name}</td>
+          <td>{$item.last_level}</td>
+          <td>{$item.last_rashod}</td>
+          <td>7777777</td>
+          <td>{$item.last_bat}</td>
+          <td>{$item.last_date}</td>
+          <td>{$item.sensor_date_live}</td>
           <td>
             <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
           </td>
         </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-danger">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-
-        <tr class="table-danger">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>1</td>
-          <td>Датчик 1</td>
-          <td>77777</td>
-          <td>11.11.2022</td>
-          <td>77777</td>
-          <td>
-            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal"><img src="templates/image/setting.png"></button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal"><img src="templates/image/del.png"></button>
-
-          </td>
-        </tr>
-
+        {/foreach}
       </tbody>
     </table>
   </div>
-
-  <div class="col-md-1">
-
-  </div>
-
 </div>

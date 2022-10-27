@@ -1,4 +1,4 @@
-<form action="/" method="post">
+<form id="set_sensors">
   <div class="modal" id="setSensorsModal" tabindex="-1" aria-labelledby="setSensorsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -46,6 +46,11 @@
                   <div class="col-md-6">
                     <label for="user-par-id" class="col-form-label">Высота</label>
                     <input type="text" class="form-control" id="user-name" name="login" placeholder="Высота">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="add-sensor-start" class="col-form-label">В работе с:</label>
+                    <input type="date" class="form-control" id="add-sensor-start" name="add-sensor-start">
                   </div>
                 </div>
               </div>
@@ -119,4 +124,5 @@
       </div>
 
     </div>
+  </div>
 </form>

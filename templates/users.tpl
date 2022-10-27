@@ -4,10 +4,10 @@
   <div class="col-md-10">
     <br>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <h2>Пользователи <button class="modaladdrec" data-bs-toggle="modal" data-bs-target="#addSensorsModal" ><img src="./templates/images/adduser.png"></button></h2>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
