@@ -74,11 +74,31 @@ if ($user_info) {
 
 $scripts = '';
 
-	//Главная страница
+	//Главная страница (Таблица датчиков)
 	//===================================================
 	if ($page == '') {
 		$content = "{include file='tablemain.tpl'}";
 		$scripts = '<script src="templates/js/sensors.js"></script>';
+
+
+
+	//Вывод строк таблицы с датчиками в HTML формате
+	//===================================================
+	} elseif ($page == 'sensors_table') {
+		$content = "{include file='sensors_table.tpl'}";
+
+
+
+	//Добавление нового датчика Json
+	//===================================================
+	} elseif ($page == 'addsensor') {
+		$content = 'Add sensor page';
+
+
+
+
+
+
 		
 
 

@@ -1,4 +1,19 @@
 $(document).ready(function(){
+
+	// $.get('?page=sensors_table', function(data) {
+	// 	$('.tbody_tablemain').html(data);
+
+	// 	//editico_click();
+	// });
+
+    setInterval(function(){
+		$.get('?page=sensors_table', function(data) {
+			$('.tbody_tablemain').html(data);
+
+			//editico_click();
+		});
+    }, 1000);
+
 	//Валидация формы
 	var validator = $('.add_sensors').validate({
 		rules: {
@@ -20,7 +35,8 @@ $(document).ready(function(){
 			},
 			add_sensor_number: {
 				required: 'Укажите заводской номер устройства',
-				number: 'Укажите число'
+				number: 'Укажите число',
+				min: 'Введите число больше 0'
 			},
 			add_sensor_seth: {
 				required: 'Укажите высоту от датчика до дна в см',
@@ -30,6 +46,19 @@ $(document).ready(function(){
 		submitHandler: function(form) {
 			var str_ser = $(form).serialize();
 			console.log(str_ser);
+			$.get('?page=addsensor&'+str_ser, function(data){
+				console.log('Result: '+data.result);
+				if (data.result == 'OK') {
+					//обновим таблицу
+					//выведем уведомление о успешном добавлении
+					toastr.success('Датчик добавлен!');
+				} else {
+					//выведем сообщение об ошибке
+					toastr.error(data.error);
+				}
+				//Закроем модальное окно
+				$('.modal').modal('hide');
+			}, 'json');
 		},
 		errorElement: 'span',
 		errorPlacement: function (error, element) {
