@@ -146,8 +146,34 @@
 
 
 
+	//Удаление датчика
+	//===================================================
+	} elseif ($page == 'delsensor') {
+		$log->writeln('Delete sensor:');
+		$log->writeln(json_encode($_GET));
 
+		if(isset($_GET['sensor_num'])){
+			$del_sensor_num = $_GET['sensor_num'];
+		}else{
+			$del_sensor_num = 0;
+		}
 
+		$data = Array();
+
+		if ($del_sensor_num == 0) {
+			$data['error'] = 'Ошибка удаления датчика!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
+
+		$res = del_sensor($del_sensor_num);
+		if ($res) {
+			$data['result'] = 'OK';
+		} else {
+			$data['error'] = 'Ошибка удаления датчика!';
+		}
+
+		die ( json_encode($data) );
 
 
 

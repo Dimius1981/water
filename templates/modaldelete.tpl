@@ -8,12 +8,12 @@
         </div>
         <div class="modal-body">
           <div class="tab-content">
-            <p>Вы действительно хотите удалить (имя датчика) датчик?</p>
+            <p>Вы действительно хотите удалить датчик: <span class="del_sensor_name"></span>?</p>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary ">Отмена</button>
-          <button type="submit" class="btn btn-danger ">Удалить</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-danger" id="del_sensor_button">Удалить</button>
         </div>
       </div>
 

@@ -192,4 +192,23 @@ function add_sensor($factorynumber, $name, $description, $high, $gsmnum) {
 }
 
 
+
+
+//Удаляет датчик из таблицы sensors
+function del_sensor($sensor_id) {
+	global $connect;
+	global $log;
+
+	$sql = "DELETE FROM sensors WHERE factorynumber = $sensor_id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
+
 ?>

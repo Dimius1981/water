@@ -96,6 +96,13 @@ $scripts = '';
 
 
 
+	//Удаление датчика
+	//===================================================
+	} elseif ($page == 'delsensor') {
+		$content = 'Delete sensor page';
+
+
+
 
 
 

@@ -1,16 +1,9 @@
 $(document).ready(function(){
 
-	// $.get('?page=sensors_table', function(data) {
-	// 	$('.tbody_tablemain').html(data);
-
-	// 	//editico_click();
-	// });
-
+	//Обновление таблицы 1 раз в секунду
     setInterval(function(){
 		$.get('?page=sensors_table', function(data) {
 			$('.tbody_tablemain').html(data);
-
-			//editico_click();
 		});
     }, 1000);
 
@@ -49,7 +42,6 @@ $(document).ready(function(){
 			$.get('?page=addsensor&'+str_ser, function(data){
 				console.log('Result: '+data.result);
 				if (data.result == 'OK') {
-					//обновим таблицу
 					//выведем уведомление о успешном добавлении
 					toastr.success('Датчик добавлен!');
 				} else {
@@ -73,6 +65,7 @@ $(document).ready(function(){
 		}
 	});
 
+	//Открытие окна добавления нового датчика
 	$('#addSensorsModal').on('show.bs.modal', function(e){
 		//alert("Add Sensor modal open!");
 		//Очистим ошибки
@@ -82,5 +75,33 @@ $(document).ready(function(){
 		$('#add_sensor_description').val('');
 		$('#add_sensor_phone').val('');
 		$('#add_sensor_seth').val('');
+	});
+
+	//Открытие окна удаления датчика
+	$('#delSensorsModal').on('show.bs.modal', function(e){
+		var sensor_num = $(e.relatedTarget).data('sensor-num');
+		var sensor_name = $(e.relatedTarget).data('sensor-name');
+		//alert('Delete sensor: '+sensor_num);
+		$('.del_sensor_name').html('<b>'+sensor_name+'</b>');
+		$('#del_sensor_button').data('sensor-num', sensor_num);
+	});
+
+	//Нажали кнопку удаления в модальном окне удаления датчика
+	$('#del_sensor_button').on('click', function(){
+		var sensor_num = $(this).data('sensor-num');
+		//alert('Delete sensor num: '+sensor_num);
+		$.get('?page=delsensor&sensor_num='+sensor_num, function(data){
+			console.log('Result: '+data.result);
+			if (data.result == 'OK') {
+				//выведем уведомление о успешном добавлении
+				toastr.success('Датчик удален!');
+			} else {
+				//выведем сообщение об ошибке
+				toastr.error(data.error);
+			}
+			//Закроем модальное окно
+			$('.modal').modal('hide');
+		}, 'json');
+
 	});
 });
