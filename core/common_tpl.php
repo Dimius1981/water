@@ -177,6 +177,92 @@
 
 
 
+
+
+
+	//Вывод информации о датчике в виде Json
+	//===================================================
+	} elseif ($page == 'getsensor') {
+		$log->writeln('Get sensor info:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['sensor_num'])){
+			$get_sensor_num = $_GET['sensor_num'];
+		}else{
+			$get_sensor_num = 0;
+		}
+
+		$sensor_info_res = get_sensor_by_id($get_sensor_num);
+		$sensor_info_arr = mysqli_fetch_assoc($sensor_info_res);
+
+		die ( json_encode($sensor_info_arr) );
+
+
+
+
+
+
+	//Обновление информации о датчике Json
+	//===================================================
+	} elseif ($page == 'updsensor') {
+		$log->writeln('Update sensor:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['set_sensor_number'])){
+			$upd_sensor_num = $_GET['set_sensor_number'];
+		}else{
+			$upd_sensor_num = 0;
+		}
+
+		if(isset($_GET['set_sensor_name'])){
+			$upd_sensor_name = $_GET['set_sensor_name'];
+		}else{
+			$upd_sensor_name = '';
+		}
+
+		if(isset($_GET['set_sensor_description'])){
+			$upd_sensor_description = $_GET['set_sensor_description'];
+		}else{
+			$upd_sensor_description = '';
+		}
+
+		if(isset($_GET['set_sensor_phone'])){
+			$upd_sensor_phone = $_GET['set_sensor_phone'];
+		}else{
+			$upd_sensor_phone = '';
+		}
+
+		if(isset($_GET['set_sensor_seth'])){
+			$upd_sensor_seth = $_GET['set_sensor_seth'];
+		}else{
+			$upd_sensor_seth = 0;
+		}
+
+		if(isset($_GET['set_sensor_start'])){
+			$upd_sensor_start = $_GET['set_sensor_start'];
+		}else{
+			$upd_sensor_start = '';
+		}
+
+		$data = Array();
+
+		$res = upd_sensor($upd_sensor_num, $upd_sensor_name, $upd_sensor_description, $upd_sensor_seth, $upd_sensor_phone, $upd_sensor_start);
+
+		if ($res > 0) {
+			$data['result'] = 'OK';
+		} else {
+			$data['error'] = 'Не удалось сохранить запись в БД!';
+			$log->writeln('Error: '.$data['error']);
+		}
+
+		die ( json_encode($data) );
+
+
+
+
+
+
+
 	//Страница добавления новой записи
 	//===================================================
 	} elseif ($page == 'addrec') {

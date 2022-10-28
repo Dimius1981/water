@@ -211,4 +211,24 @@ function del_sensor($sensor_id) {
 }
 
 
+
+
+//Обновление записи датчика по заводскому номеру
+function upd_sensor($sensor_id, $name, $description, $high, $gsmnum, $start_work) {
+	global $connect;
+	global $log;
+
+	$sql = "UPDATE sensors SET name = '$name', description = '$description', high = $high, gsmnum = '$gsmnum', start_work = '$start_work' WHERE factorynumber = $sensor_id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
+
+
 ?>

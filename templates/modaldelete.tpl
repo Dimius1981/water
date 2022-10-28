@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-primary me-auto" data-bs-dismiss="modal">Отмена</button>
           <button type="button" class="btn btn-danger" id="del_sensor_button">Удалить</button>
         </div>
       </div>

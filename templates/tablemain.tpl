@@ -22,13 +22,6 @@
                 <a class="nav-link" href="?page=users">Пользователи</a>
               </li>
             </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <div class="tab-pane container active" id="home"></div>
-              <div class="tab-pane container fade" id="menu1"></div>
-              <div class="tab-pane container fade" id="menu2"></div>
-            </div>
           </div>
 
         </div>
