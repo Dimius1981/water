@@ -51,8 +51,8 @@
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
               </td>
             </tr>
             <tr>
@@ -67,8 +67,8 @@
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
               </td>
             </tr>
             <tr>
@@ -83,8 +83,8 @@
                 </div>
               </td>
               <td>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
               </td>
             </tr>
           </tbody>

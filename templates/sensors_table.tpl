@@ -9,8 +9,8 @@
   <td>{$item.last_date}</td>
   <td>{$item.sensor_date_live}</td>
   <td>
-    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#setSensorsModal" data-sensor-num="{$item.factorynumber}"><img src="templates/images/setting.png"></button>
-    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delSensorsModal" data-sensor-num="{$item.factorynumber}" data-sensor-name="{$item.name}"><img src="templates/images/del.png"></button>
+    <button class="btn" data-bs-toggle="modal" data-bs-target="#setSensorsModal" data-sensor-num="{$item.factorynumber}"><img src="templates/images/settingtrue.png"></button>
+    <button class="btn" data-bs-toggle="modal" data-bs-target="#delSensorsModal" data-sensor-num="{$item.factorynumber}" data-sensor-name="{$item.name}"><img src="templates/images/deltrue.png"></button>
   </td>
 </tr>
 {/foreach}
