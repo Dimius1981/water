@@ -117,8 +117,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary mr1">Отмена</button>
-          <button type="submit" class="btn btn-primary">Обновить</button>
+          <button type="submit" class="btn btn-secondary mr1">Отмена</button>
+          <button type="submit" class="btn btn-success">Обновить</button>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
       </div>

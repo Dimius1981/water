@@ -34,13 +34,8 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="example-3">
-          <label for="custom-file-upload" class="filupp">
-            <span class="filupp-file-name js-value">Загрузить файл</span>
-            <input type="file" name="attachment-file" value="1" id="custom-file-upload">
-          </label>
-        </div>
-
+        <button class="btn " data-bs-toggle="modal" data-bs-target="#addfileModal"><img src="templates/image/down.png"></button>
+        <span>Загрузить файл</span>
       </div>
     </div>
 

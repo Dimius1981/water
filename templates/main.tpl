@@ -23,6 +23,7 @@
   {include file ='modaldelete.tpl'}
   {include file ='modaladd.tpl'}
   {include file ='modalsettind.tpl'}
+  {include file ='modaladdfile.tpl'}
 {/if}
 
 {if $page == "users"}
