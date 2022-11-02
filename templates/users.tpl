@@ -48,8 +48,11 @@
               <td>{$item.email}</td>
               <td>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
-                </div>
+                  {if $item.enabled == 1}
+                  <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked disabled>
+                  {else}  
+                  <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" disabled>   
+                  {/if}           
               </td>
               <td>
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
