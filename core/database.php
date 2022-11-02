@@ -253,14 +253,16 @@ function userlist() {
 
 
 // Добавляет новую запись в таблицу пользователи
-function add_user($level_id, $login, $pass, $email) {
+// здесь забыл добавить $name - у пользователя же имя есть)
+function add_user($level_id, $name, $login, $pass, $email) {
 	global $connect;
 	global $log;
 
 	$str_pass = sha1($pass);
 	// printf($str_pass);
 
-	$sql = "INSERT INTO users (level_id, login, name, pass, date, email, enabled) VALUES ($level_id, '$login', 'A', $'srt_pass', NOW(), '$email', 1";
+	//Здесь перечисляются поля в том порядке в котором они в базе записаны
+	$sql = "INSERT INTO users (id, level_id, name, login, pass, date_login, email, enabled) VALUES (NULL, $level_id, '$name', '$login', '$str_pass', NOW(), '$email', 1);";
 
 	@mysqli_query($connect, $sql);
 	if (mysqli_error($connect)) {
