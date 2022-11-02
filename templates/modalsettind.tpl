@@ -125,8 +125,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary me-auto" data-bs-dismiss="modal">Отмена</button>
-          <button type="submit" class="btn btn-danger">Сохранить</button>
+          <button type="button" class="btn btn-danger me-auto" data-bs-dismiss="modal">Отмена</button>
+          <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
       </form>
     </div>

@@ -231,4 +231,88 @@ function upd_sensor($sensor_id, $name, $description, $high, $gsmnum, $start_work
 }
 
 
+
+
+//=====================Пользователи=========================
+
+// Вывод пользователей
+function userlist() {
+	global $connect;
+	global $log;
+
+	$sql = "SELECT * FROM users";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+		return 0;
+	} else {
+		return $result;
+	}
+}
+
+
+// Добавляет новую запись в таблицу пользователи
+function add_user($level_id, $login, $pass, $email) {
+	global $connect;
+	global $log;
+
+	$str_pass = sha1($pass);
+	// printf($str_pass);
+
+	$sql = "INSERT INTO users (level_id, login, name, pass, date, email, enabled) VALUES ($level_id, '$login', 'A', $'srt_pass', NOW(), '$email', 1";
+
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return mysqli_insert_id($connect);
+	}
+}
+
+
+
+//Удаление пользователя
+function del_user($id) {
+	global $connect;
+	global $log;
+
+	$sql = "DELETE FROM users WHERE id = $id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
+
+
+
+//Обновление записи датчика по заводскому номеру
+function upd_user($sensor_id, $name, $description, $high, $gsmnum, $start_work) {
+	global $connect;
+	global $log;
+
+	$sql = "UPDATE sensors SET name = '$name', description = '$description', high = $high, gsmnum = '$gsmnum', start_work = '$start_work' WHERE factorynumber = $sensor_id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
+
+
+
+
+
+
 ?>

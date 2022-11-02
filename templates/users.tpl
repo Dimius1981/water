@@ -5,7 +5,7 @@
     <br>
     <div class="row">
       <div class="col-md-4">
-        <h2>Пользователи <button class="modaladdrec" data-bs-toggle="modal" data-bs-target="#addSensorsModal" ><img src="./templates/images/adduser.png"></button></h2>
+        <h2>Пользователи <button class="modaladdrec" data-bs-toggle="modal" data-bs-target="#adduserModal" ><img src="./templates/images/adduser.png"></button></h2>
       </div>
       <div class="col-md-8">
         <ul class="nav nav-pills">
@@ -39,12 +39,13 @@
             </tr>
           </thead>
           <tbody>
+            {foreach $userlist_arr as $item}
             <tr>
-              <td>1</td>
-              <td>Admin</td>
-              <td>Admin</td>
-              <td>11.11.2022 19:53:46</td>
-              <td>admin@admin</td>
+              <td>{$item.level_id}</td>
+              <td>{$item.name}</td>
+              <td>{$item.login}</td>
+              <td>{$item.date_login}</td>
+              <td>{$item.email}</td>
               <td>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
@@ -52,43 +53,13 @@
               </td>
               <td>
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal" data-user-id="{$item.id}" data-user-name="{$item.name}" id="btndeleteuser"><img src="templates/images/del.png"></button>
               </td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Admin</td>
-              <td>Admin</td>
-              <td>11.11.2022 19:53:46</td>
-              <td>admin@admin</td>
-              <td>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
-                </div>
-              </td>
-              <td>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Admin</td>
-              <td>Admin</td>
-              <td>11.11.2022 19:53:46</td>
-              <td>admin@admin</td>
-              <td>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
-                </div>
-              </td>
-              <td>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal"><img src="templates/images/del.png"></button>
-              </td>
-            </tr>
+            {/foreach}
+            
           </tbody>
-        </table>
+        </table> 
       </div>
     </div>
   </div>

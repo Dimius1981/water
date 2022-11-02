@@ -365,10 +365,16 @@
 	//===================================================
 	} elseif ($page == 'users') {
 		$tpl->assign('PageTitle', 'Users');
+		$user_list_res = userlist();
+		$user_list_arr = Array();
+		while($row = mysqli_fetch_assoc($user_list_res)){
+			$user_list_arr[] = $row;
+		}
+		
+		
+		$tpl->assign('userlist_arr', $user_list_arr);
 		$tpl->display('main.tpl');
-
-
-
+	
 
 
 
@@ -381,6 +387,43 @@
 
 
 
+
+	//Удаление пользователя
+	//===================================================
+	} elseif ($page == 'deleteuser') {
+		del_user($id);
+
+
+
+	//Добавление пользователя
+	//===================================================
+	} elseif ($page == 'adduser') {
+		if(isset($_GET['add_user_login'])){
+			$add_user_login = $_GET['add_user_login'];
+		}else{
+			$add_user_login = '';
+		}
+
+		if(isset($_GET['add_user_pass'])){
+			$add_user_pass = $_GET['add_user_pass'];
+		}else{
+			$add_user_pass = 0;
+		}
+
+		if(isset($_GET['add_user_level_id'])){
+			$add_user_level_id = $_GET['add_user_level_id'];
+		}else{
+			$add_user_level_id = '2';
+		}
+
+		if(isset($_GET['add_user_email'])){
+			$add_user_email = $_GET['add_user_email'];
+		}else{
+			$add_user_email = '';
+		}
+
+
+		add_user($add_user_level_id, $add_user_login, $add_user_pass, $add_user_email);
 
 
 

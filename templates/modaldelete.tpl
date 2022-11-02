@@ -4,8 +4,9 @@
         <div class="modal-header">
 
           <h4>Удалить</h4>
-
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
         </div>
+        
         <div class="modal-body">
           <div class="tab-content">
             <p>Вы действительно хотите удалить датчик: <span class="del_sensor_name"></span>?</p>

@@ -1,4 +1,4 @@
-<form action="/" method="post">
+<form action="" method="post">
   <div class="modal" id="usereditModal" tabindex="-1" aria-labelledby="usereditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
