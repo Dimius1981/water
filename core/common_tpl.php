@@ -398,6 +398,7 @@
 	//Добавление пользователя
 	//===================================================
 	} elseif ($page == 'adduser') {
+		//Все эти поля должны быть в модальной форме добавления пользователя
 		if(isset($_GET['add_user_login'])){
 			$add_user_login = $_GET['add_user_login'];
 		}else{
@@ -413,7 +414,7 @@
 		if(isset($_GET['add_user_level_id'])){
 			$add_user_level_id = $_GET['add_user_level_id'];
 		}else{
-			$add_user_level_id = '2';
+			$add_user_level_id = 0; //Пусть будет 0, если не указали level_id
 		}
 
 		if(isset($_GET['add_user_email'])){
@@ -422,8 +423,32 @@
 			$add_user_email = '';
 		}
 
+		if(isset($_GET['add_user_name'])){
+			$add_user_name = $_GET['add_user_name'];
+		}else{
+			$add_user_name = '';
+		}
 
-		add_user($add_user_level_id, $add_user_login, $add_user_pass, $add_user_email);
+
+		$data = Array(); //Объявим массив для вывода результатов
+
+		$res = add_user($add_user_level_id, $add_user_name, $add_user_login, $add_user_pass, $add_user_email);
+
+		//Проверим получилось добавить пользователя
+		if ($res) {
+			//Если получилось число > 0, то пользователя добавили
+			$data['result'] = 'OK';
+		} else {
+			//Не получилось добавить пользователя
+			$data['error'] = 'Не удалось добавить пользователя в БД!';
+			$log->writeln('Error: '.$data['error']);
+		}
+
+		//Выведем закодированный JSon ответ и завершим скрипт
+		die ( json_encode($data) );
+
+
+
 
 
 

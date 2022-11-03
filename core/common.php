@@ -156,6 +156,7 @@ $scripts = '';
 	//===================================================
 	} elseif ($page == 'users') {
 		$content = "{include file='users.tpl'}";
+		$scripts = '<script src="templates/js/users.js"></script>';
 
 
 
