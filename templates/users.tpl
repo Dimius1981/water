@@ -55,7 +55,7 @@
                   {/if}           
               </td>
               <td>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#usereditModal"><img src="templates/images/pen.png"></button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#edituserModal" data-user-id="{$item.id}" data-user-name="{$item.name}" data-user-level-id="{$item.level_id}" data-user-login="{$item.login}" data-user-email="{$item.email}" data-user-enabled="{$item.enabled}"><img src="templates/images/pen.png"></button>
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal" data-user-id="{$item.id}" data-user-name="{$item.name}" id="btndeleteuser"><img src="templates/images/del.png"></button>
               </td>
             </tr>

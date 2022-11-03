@@ -220,3 +220,7 @@ html, body {
 	background-color: #409f00;
 	border-color: #409f00;
 }
+
+#edit_user_enabled{
+	margin-top: 12px;
+}

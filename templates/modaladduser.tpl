@@ -1,4 +1,3 @@
-
   <div class="modal" id="adduserModal" tabindex="-1" aria-labelledby="adduserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -39,6 +38,7 @@
                       <option value="1">Admin</option>
                       <option value="2">Пользователь</option>
                       <option value="3">Наблюдатель</option>
+                      <option value="4">Покупатель</option>
                     </select>
                   </div>
                 </div>

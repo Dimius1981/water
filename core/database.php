@@ -251,6 +251,21 @@ function userlist() {
 	}
 }
 
+//Функция выводит запись о пользователе $user_id
+function get_user_by_id($user_id){
+	global $connect;
+	global $log;
+
+	$sql = "SELECT * FROM users WHERE id = $user_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+	} else {
+		return $result;
+	}
+}
+
 
 // Добавляет новую запись в таблицу пользователи
 // здесь забыл добавить $name - у пользователя же имя есть)
@@ -295,12 +310,12 @@ function del_user($id) {
 
 
 
-//Обновление записи датчика по заводскому номеру
-function upd_user($sensor_id, $name, $description, $high, $gsmnum, $start_work) {
+//Обновление записи пользователя
+function upd_user($id,$level_id, $name, $login, $pass, $email,$enabled) {
 	global $connect;
 	global $log;
 
-	$sql = "UPDATE sensors SET name = '$name', description = '$description', high = $high, gsmnum = '$gsmnum', start_work = '$start_work' WHERE factorynumber = $sensor_id";
+	$sql = "UPDATE users SET level_id = $level_id, name = '$name', login = '$login', pass = '$pass', email = '$email', enabled = $enabled WHERE id = $id";
 	@mysqli_query($connect, $sql);
 	if (mysqli_error($connect)) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
@@ -311,9 +326,6 @@ function upd_user($sensor_id, $name, $description, $high, $gsmnum, $start_work) 
 	}
 
 }
-
-
-
 
 
 

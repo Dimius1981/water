@@ -387,11 +387,56 @@
 
 
 
+	//Вывод информации о пользователе в виде Json
+	//===================================================
+	} elseif ($page == 'getuser') {
+		$log->writeln('Get sensor info:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['user_id'])){
+			$get_user_id = $_GET['user_id'];
+		}else{
+			$get_user_id = 0;
+		}
+
+		$user_info_res = get_user_by_id($get_user_id);
+		$user_info_arr = mysqli_fetch_assoc($user_info_res);
+
+		die ( json_encode($user_info_arr) );
+
+
+
+
 
 	//Удаление пользователя
 	//===================================================
 	} elseif ($page == 'deleteuser') {
-		del_user($id);
+		$log->writeln('Delete user:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['user_id'])){
+			$del_user_id = $_GET['user_id'];
+		}else{
+			$del_user_id = 0;
+		}
+
+		$data = Array();
+
+		if ($del_user_id == 0) {
+			$data['error'] = 'Ошибка удаления датчика!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
+
+		$res = del_user($del_user_id);
+		if ($res) {
+			$data['result'] = 'OK';
+		} else {
+			$data['error'] = 'Ошибка удаления датчика!';
+		}
+
+		die ( json_encode($data) );
+		
 
 
 
@@ -447,8 +492,64 @@
 		//Выведем закодированный JSon ответ и завершим скрипт
 		die ( json_encode($data) );
 
+	//Обновление информации о пользователе
+	//===================================================
+	} elseif ($page == 'upduser') {
+		$log->writeln('Update sensor:');
+		$log->writeln(json_encode($_GET));
 
 
+		if(isset($_GET['edit_user_id'])){
+			$edit_user_id = $_GET['edit_user_id'];
+		}else{
+			$edit_user_id = '';
+		}
+		if(isset($_GET['edit_user_level_id'])){
+			$edit_user_level_id = $_GET['edit_user_level_id'];
+		}else{
+			$edit_user_level_id = 0; //Пусть будет 0, если не указали level_id
+		}
+		if(isset($_GET['edit_user_name'])){
+			$edit_user_name = $_GET['edit_user_name'];
+		}else{
+			$edit_user_name = '';
+		}
+		if(isset($_GET['edit_user_login'])){
+			$edit_user_login = $_GET['edit_user_login'];
+		}else{
+			$edit_user_login = '';
+		}
+
+		if(isset($_GET['edit_user_pass'])){
+			$edit_user_pass = $_GET['edit_user_pass'];
+		}else{
+			$edit_user_pass = 0;
+		}
+		if(isset($_GET['edit_user_email'])){
+			$edit_user_email = $_GET['edit_user_email'];
+		}else{
+			$edit_user_email = '';
+		}
+		if(isset($_GET['edit_user_enabled'])){
+			$edit_user_enabled = $_GET['edit_user_enabled'];
+		}else{
+			$edit_user_enabled = '';
+		}
+
+		
+
+		$data = Array();
+
+		$res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
+
+		if ($res > 0) {
+			$data['result'] = 'OK';
+		} else {
+			$data['error'] = 'Не удалось сохранить запись в БД!';
+			$log->writeln('Error: '.$data['error']);
+		}
+
+		die ( json_encode($data) );
 
 
 
