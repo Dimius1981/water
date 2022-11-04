@@ -523,7 +523,7 @@
 		if(isset($_GET['edit_user_pass'])){
 			$edit_user_pass = $_GET['edit_user_pass'];
 		}else{
-			$edit_user_pass = 0;
+			$edit_user_pass = '';
 		}
 		if(isset($_GET['edit_user_email'])){
 			$edit_user_email = $_GET['edit_user_email'];
@@ -533,12 +533,17 @@
 		if(isset($_GET['edit_user_enabled'])){
 			$edit_user_enabled = $_GET['edit_user_enabled'];
 		}else{
-			$edit_user_enabled = '';
+			$edit_user_enabled = 0;
 		}
 
 		
 
 		$data = Array();
+        if ($edit_user_pass = '') {
+        	$res = upd_user_no_pass($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_email, $edit_user_enabled);
+        }else{
+        	$res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
+        }
 
 		$res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
 

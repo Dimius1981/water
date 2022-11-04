@@ -315,7 +315,26 @@ function upd_user($id,$level_id, $name, $login, $pass, $email,$enabled) {
 	global $connect;
 	global $log;
 
-	$sql = "UPDATE users SET level_id = $level_id, name = '$name', login = '$login', pass = '$pass', email = '$email', enabled = $enabled WHERE id = $id";
+	$str_pass = sha1($pass);
+
+	$sql = "UPDATE users SET level_id = $level_id, name = '$name', login = '$login', pass = '$str_pass', email = '$email', enabled = $enabled WHERE id = $id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
+
+//Обновление записи пользователя без пароля
+function upd_user_no_pass($id,$level_id, $name, $login, $email,$enabled) {
+	global $connect;
+	global $log;
+
+	$sql = "UPDATE users SET level_id = $level_id, name = '$name', login = '$login',  email = '$email', enabled = $enabled WHERE id = $id";
 	@mysqli_query($connect, $sql);
 	if (mysqli_error($connect)) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");

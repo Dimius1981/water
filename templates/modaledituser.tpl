@@ -66,5 +66,5 @@
         </div>
       </div>
       <input type="hidden"  id="edit_user_id" name="edit_user_id"  value=""> 
-     <!--  <input type="hidden"  id="edit_checkbox" name="edit_checkbox"  value="">  -->
+     
 </form>

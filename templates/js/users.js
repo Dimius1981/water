@@ -74,9 +74,7 @@ $(document).ready(function(){
 			edit_user_login: {
 				required: true
 			},
-			edit_user_pass: {
-				required: true
-			},
+			
 			edit_user_email: {
 				required: true
 			}
@@ -88,9 +86,7 @@ $(document).ready(function(){
 			edit_user_login: {
 				required: 'Укажите login пользователя'
 			},
-			edit_user_pass: {
-				required: 'Укажите пароль пользователя'
-			},
+			
 			edit_user_email: {
 				required: 'Укажите email пользователя'
 			}
@@ -152,7 +148,6 @@ $(document).ready(function(){
 	// Нажали кнопку удаления в модальном окне удаления пользователя
 	$('#del_user_button').on('click', function(){
 		var user_id = $(this).data('user-id');
-		//alert('Delete sensor num: '+sensor_num);
 		$.get('?page=deleteuser&user_id='+user_id, function(data){
 			console.log('Result: '+data.result);
 			if (data.result == 'OK') {
@@ -176,7 +171,8 @@ $(document).ready(function(){
 
 		//Раз открыта первая вкладка, то запросим информацию о нужном пользователе
 		$.get('?page=getuser&user_id='+user_id, function(data){
-			var enabled = data.enabled
+			
+			var enabled = data.enabled;
 			if (enabled == "1") {
 					$('#edit_user_enabled').prop('checked', true);
 					$('#edit_user_enabled').val("1");
@@ -198,17 +194,24 @@ $(document).ready(function(){
 					}	
 					});
 				}
+			
 			console.log('Result Json:');
 			console.log(JSON.stringify(data));
 			//Обновим все поля 1й вкладки
 			$('#edit_user_id').val(data.id);
 			$('#edit_user_name').val(data.name);
 			$('#edit_user_login').val(data.login);
-			$('#edit_user_pass').val(data.pass);
 			$('#edit_user_level_id').val(data.level_id);
 			$('#edit_user_email').val(data.email);
 			$('#edit_user_enabled').val(data.enabled);
-			
+			// $('#edit_user_pass').on('keyup',function(){
+			//   var $this = $(this), val = $this.val();
+			//   if(val.length == 0){
+			//     $('#edit_user_pass').remoteAttr(class);
+			//   }else {
+			    
+			//   }
+			// });
 		}, 'json');
 
 	});
