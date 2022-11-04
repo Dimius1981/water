@@ -495,7 +495,7 @@
 	//Обновление информации о пользователе
 	//===================================================
 	} elseif ($page == 'upduser') {
-		$log->writeln('Update sensor:');
+		$log->writeln('Update user:');
 		$log->writeln(json_encode($_GET));
 
 
@@ -519,7 +519,6 @@
 		}else{
 			$edit_user_login = '';
 		}
-
 		if(isset($_GET['edit_user_pass'])){
 			$edit_user_pass = $_GET['edit_user_pass'];
 		}else{
@@ -539,13 +538,14 @@
 		
 
 		$data = Array();
-        if ($edit_user_pass = '') {
+		// Условие если поле пароля пустое 
+        if ($_GET['edit_user_pass'] == '') {
         	$res = upd_user_no_pass($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_email, $edit_user_enabled);
         }else{
         	$res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
         }
 
-		$res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
+		// $res = upd_user($edit_user_id, $edit_user_level_id, $edit_user_name, $edit_user_login, $edit_user_pass, $edit_user_email, $edit_user_enabled);
 
 		if ($res > 0) {
 			$data['result'] = 'OK';
