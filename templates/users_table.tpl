@@ -1,6 +1,6 @@
 {foreach $userlist_arr as $item}
 <tr>
-  <td>{$item.level_id}</td>
+  <td>{$item.id}</td>
   <td>{$item.name}</td>
   <td>{$item.login}</td>
   <td>{$item.date_login}</td>

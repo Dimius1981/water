@@ -29,7 +29,7 @@
         <table class="table padd table-borderless">
           <thead class="table ">
             <tr>
-              <th>Статус</th>
+              <th>ID</th>
               <th>Имя</th>
               <th>Логин</th>
               <th>Последний сеанс</th>
