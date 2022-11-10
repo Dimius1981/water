@@ -25,7 +25,6 @@
       </div>
       <hr>
       <div class="tab-content">
-
         <table class="table padd table-borderless">
           <thead class="table ">
             <tr>

@@ -1,3 +1,4 @@
 /templates_c
 /logs/*.log
 /configs/config.php
+/.htaccess

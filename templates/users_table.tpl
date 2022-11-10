@@ -8,10 +8,11 @@
   <td>
     <div class="form-check form-switch">
       {if $item.enabled == 1}
-      <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked disabled>
+      <input class="form-check-input mySwitch" type="checkbox" checked data-user-id="{$item.id}">
       {else}
-      <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" disabled>
+      <input class="form-check-input mySwitch" type="checkbox" data-user-id="{$item.id}">
       {/if}
+    </div>
   </td>
   <td>
     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#edituserModal" data-user-id="{$item.id}"><img src="templates/images/pen.png"></button>

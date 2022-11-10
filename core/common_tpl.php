@@ -405,7 +405,13 @@
 		$data = Array();
 
 		if ($del_user_id == 0) {
-			$data['error'] = 'Ошибка удаления датчика!';
+			$data['error'] = 'Ошибка удаления пользователя!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
+
+		if ($del_user_id == 1) {
+			$data['error'] = 'Нельзя удалить администратора!';
 			$log->writeln('Error: '.$data['error']);
 			die ( json_encode($data) );
 		}
@@ -414,7 +420,7 @@
 		if ($res) {
 			$data['result'] = 'OK';
 		} else {
-			$data['error'] = 'Ошибка удаления датчика!';
+			$data['error'] = 'Ошибка удаления пользователя!';
 		}
 
 		die ( json_encode($data) );
@@ -480,7 +486,7 @@
 	//Вывод информации о пользователе в виде Json
 	//===================================================
 	} elseif ($page == 'getuser') {
-		$log->writeln('Get sensor info:');
+		$log->writeln('Get user info:');
 		$log->writeln(json_encode($_GET));
 
 		if(isset($_GET['user_id'])){
@@ -542,7 +548,11 @@
 			$edit_user_enabled = 0;
 		}
 
-		
+		if(($edit_user_id == 1) and !$edit_user_enabled) {
+			$data['error'] = 'Нельзя заблокировать администратора!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
 
 		$data = Array();
 		// Условие если поле пароля пустое 
@@ -563,6 +573,52 @@
 
 		die ( json_encode($data) );
 
+
+
+	//Обновление информации о доступности пользователе
+	//===================================================
+	} elseif ($page == 'upduseren') {
+		$log->writeln('Update user enabled:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['user_id'])){
+			$get_user_id = $_GET['user_id'];
+		}else{
+			$get_user_id = 0;
+		}
+
+		if(isset($_GET['user_en'])){
+			$get_user_en = $_GET['user_en'];
+		}else{
+			$get_user_en = '';
+		}
+
+		if ($get_user_id == 1) {
+			$data['error'] = 'Нельзя заблокировать администратора!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
+
+		$data = Array();
+		if (($get_user_id > 0) and (strlen($get_user_en) > 0)) {
+			if ($get_user_en == 'true') {
+				$user_en = 1;
+			} else {
+				$user_en = 0;
+			}
+			$user_en_res = upd_user_enabled($get_user_id, $user_en);
+			if ($user_en_res > 0) {
+				$data['result'] = 'OK';
+			} else {
+				$data['error'] = 'Не удалось обновить запись пользователя!';
+				$log->writeln('Error: '.$data['error']);
+			}
+		} else {
+			$data['error'] = 'Ошибка в параметрах запроса!';
+			$log->writeln('Error: '.$data['error']);
+		}
+
+		die ( json_encode($data) );
 
 
 

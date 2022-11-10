@@ -2,6 +2,24 @@
 function update_user_table() {
 	$.get('?page=users_table', function(data) {
 		$('.tbody_userstable').html(data);
+
+		//Клик по чекбоксу активности пользователя
+		$('.mySwitch').on('click', function() {
+			var user_id = $(this).data('user-id');
+			var user_enabled = $(this).is(':checked');
+			//alert('Click to checkbox: '+user_id+', enabled='+user_enabled);
+			$.get('?page=upduseren&user_id='+user_id+'&user_en='+user_enabled, function(data) {
+				console.log('Result: '+data.result);
+				if (data.result == 'OK') {
+					//выведем уведомление о успешном добавлении
+					toastr.success('Запись пользователя успешно обновлена!');
+				} else {
+					//выведем сообщение об ошибке
+					toastr.error(data.error);
+				}
+				update_user_table();
+			}, 'json');
+		});
 	});
 }
 
