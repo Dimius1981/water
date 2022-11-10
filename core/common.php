@@ -59,7 +59,7 @@ $log->init();
 if ($user_info) {
 	$login_time_unix = strtotime($user_info['date_login']);
 
-	$user_time = $cur_time_unix - $login_time_unix;
+	$user_time = $CUR_TIME - $login_time_unix;
 
 
 	//Проверка на выход пользователя
