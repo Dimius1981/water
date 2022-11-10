@@ -38,7 +38,6 @@
                       <option value="1">Admin</option>
                       <option value="2">Пользователь</option>
                       <option value="3">Наблюдатель</option>
-                      <option value="4">Покупатель</option>
                     </select>
                   </div>
                 </div>
@@ -62,7 +61,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
-          <button type="submit" class="btn btn-primary" id="edit_user_button">Редактировать</button>
+          <button type="submit" class="btn btn-primary" id="edit_user_button">Сохранить</button>
         </div>
       </div>
       <input type="hidden"  id="edit_user_id" name="edit_user_id"  value=""> 

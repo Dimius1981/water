@@ -1,5 +1,14 @@
+//Функция для обнавления таблицы пользователей
+function update_user_table() {
+	$.get('?page=users_table', function(data) {
+		$('.tbody_userstable').html(data);
+	});
+}
+
 //В начале скрипта нужно открыть функцию которая выполнится только после загрузки всей страницы
 $(document).ready(function(){
+
+update_user_table();
 
 //Здесь объявлеяем все обработчики
 	//Валидация формы
@@ -42,6 +51,8 @@ $(document).ready(function(){
 				if (data.result == 'OK') {
 					//выведем уведомление о успешном добавлении
 					toastr.success('Пользователь успешно добавлен!');
+
+					update_user_table();
 				} else {
 					//выведем сообщение об ошибке
 					toastr.error(data.error);
@@ -100,7 +111,8 @@ $(document).ready(function(){
 				console.log('Result: '+data.result);
 				if (data.result == 'OK') {
 					//выведем уведомление о успешном добавлении
-					toastr.success('Пользователь успешно изменен!');
+					toastr.success('Информация о пользователе успешно изменена!');
+					update_user_table();
 				} else {
 					//выведем сообщение об ошибке
 					toastr.error(data.error);
@@ -140,8 +152,8 @@ $(document).ready(function(){
 	$('#deluserModal').on('show.bs.modal', function(e){
 		var user_id = $(e.relatedTarget).data('user-id');
 		var user_name = $(e.relatedTarget).data('user-name');
-		$('#deleteUserQuestion').html('Вы действительно хотите удалить группу: '+'<b>' + user_name + '</b>?');
-		alert('Delete user: '+user_id);
+		$('#deleteUserQuestion').html('Вы действительно хотите удалить пользователя: '+'<b>' + user_name + '</b>?');
+		//alert('Delete user: '+user_id);
 		$('#del_user_button').data('user-id', user_id);
 	});
 
@@ -152,7 +164,8 @@ $(document).ready(function(){
 			console.log('Result: '+data.result);
 			if (data.result == 'OK') {
 				//выведем уведомление о успешном добавлении
-				toastr.success('Датчик удален!');
+				toastr.success('Пользователь удален!');
+				update_user_table();
 			} else {
 				//выведем сообщение об ошибке
 				toastr.error(data.error);
@@ -204,14 +217,7 @@ $(document).ready(function(){
 			$('#edit_user_level_id').val(data.level_id);
 			$('#edit_user_email').val(data.email);
 			$('#edit_user_enabled').val(data.enabled);
-			// $('#edit_user_pass').on('keyup',function(){
-			//   var $this = $(this), val = $this.val();
-			//   if(val.length == 0){
-			//     $('#edit_user_pass').remoteAttr(class);
-			//   }else {
-			    
-			//   }
-			// });
+			$('#edit_user_pass').val('');
 		}, 'json');
 
 	});

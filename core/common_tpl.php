@@ -365,44 +365,26 @@
 	//===================================================
 	} elseif ($page == 'users') {
 		$tpl->assign('PageTitle', 'Users');
-		$user_list_res = userlist();
-		$user_list_arr = Array();
-		while($row = mysqli_fetch_assoc($user_list_res)){
-			$user_list_arr[] = $row;
-		}
-		
-		
-		$tpl->assign('userlist_arr', $user_list_arr);
 		$tpl->display('main.tpl');
 	
 
 
 
 
-	//Страница Журнал
+
+
+	//Вывод строк таблицы с пользователями в HTML формате
 	//===================================================
-	} elseif ($page == 'logs') {
-		$tpl->assign('PageTitle', 'Logs');
-		$tpl->display('main.tpl');
-
-
-
-	//Вывод информации о пользователе в виде Json
-	//===================================================
-	} elseif ($page == 'getuser') {
-		$log->writeln('Get sensor info:');
-		$log->writeln(json_encode($_GET));
-
-		if(isset($_GET['user_id'])){
-			$get_user_id = $_GET['user_id'];
-		}else{
-			$get_user_id = 0;
+	} elseif ($page == 'users_table') {
+		$user_list_res = userlist();
+		$user_list_arr = Array();
+		while($row = mysqli_fetch_assoc($user_list_res)){
+			$user_list_arr[] = $row;
 		}
 
-		$user_info_res = get_user_by_id($get_user_id);
-		$user_info_arr = mysqli_fetch_assoc($user_info_res);
 
-		die ( json_encode($user_info_arr) );
+		$tpl->assign('userlist_arr', $user_list_arr);
+		$tpl->display('blank.tpl');
 
 
 
@@ -436,7 +418,7 @@
 		}
 
 		die ( json_encode($data) );
-		
+
 
 
 
@@ -491,6 +473,31 @@
 
 		//Выведем закодированный JSon ответ и завершим скрипт
 		die ( json_encode($data) );
+
+
+
+
+	//Вывод информации о пользователе в виде Json
+	//===================================================
+	} elseif ($page == 'getuser') {
+		$log->writeln('Get sensor info:');
+		$log->writeln(json_encode($_GET));
+
+		if(isset($_GET['user_id'])){
+			$get_user_id = $_GET['user_id'];
+		}else{
+			$get_user_id = 0;
+		}
+
+		$user_info_res = get_user_by_id($get_user_id);
+		$user_info_arr = mysqli_fetch_assoc($user_info_res);
+
+		die ( json_encode($user_info_arr) );
+
+
+
+
+
 
 	//Обновление информации о пользователе
 	//===================================================
@@ -555,6 +562,32 @@
 		}
 
 		die ( json_encode($data) );
+
+
+
+
+
+
+
+
+
+
+
+	//Страница Журнал
+	//===================================================
+	} elseif ($page == 'logs') {
+		$tpl->assign('PageTitle', 'Logs');
+		$tpl->display('main.tpl');
+
+
+
+
+
+
+
+
+
+
 
 
 
