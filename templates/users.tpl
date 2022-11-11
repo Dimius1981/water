@@ -13,10 +13,18 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?page=downloads">Загрузка</a>
+            {if $func_access[6]}
+              <a class="nav-link" href="?page=downloads">Загрузка</a>
+            {else}
+              <a class="nav-link" href="#">Загрузка</a>
+            {/if}
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?page=logs">Журнал</a>
+            {if $func_access[7]}
+              <a class="nav-link" href="?page=logs">Журнал</a>
+            {else}
+              <a class="nav-link" href="#">Журнал</a>
+            {/if}
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="?page=users">Пользователи</a>

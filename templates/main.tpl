@@ -20,16 +20,24 @@
   </div>
 
 {if $page == ""}
-  {include file ='modaldelete.tpl'}
-  {include file ='modaladd.tpl'}
-  {include file ='modalsettind.tpl'}
-  {include file ='modaladdfile.tpl'}
+  {if $func_access[1]}
+    {include file ='modaldelete.tpl'}
+    {include file ='modaladd.tpl'}
+  {/if}
+  {if $func_access[2]}
+    {include file ='modalsettind.tpl'}
+  {/if}
+  {if $func_access[5]}
+    {include file ='modaladdfile.tpl'}
+  {/if}
 {/if}
 
 {if $page == "users"}
-  {include file ='modaladduser.tpl'}
-  {include file ='modaldeluser.tpl'}
-  {include file ='modaledituser.tpl'}
+  {if $func_access[3]}
+    {include file ='modaladduser.tpl'}
+    {include file ='modaldeluser.tpl'}
+    {include file ='modaledituser.tpl'}
+  {/if}
 {/if}
 
 </body>

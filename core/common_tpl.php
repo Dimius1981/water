@@ -10,7 +10,25 @@
 	$tpl->assign('page', $page);
 	$tpl->assign('Content', $content);
 	$tpl->assign('scripts', $scripts);
-		
+
+	//Доступные функции пользователю
+	$func_access_res = access_func_list($user_info['level_id']);
+	$func_access_arr = Array();
+	while ($row = mysqli_fetch_assoc($func_access_res)) {
+		$func_access_arr[$row['func_id']] = $row['state'];
+	}
+
+	//print_r($func_access_arr);
+	$tpl->assign('func_access', $func_access_arr);
+
+
+
+
+
+
+
+
+
 
 	//Главная страница (Таблица датчиков)
 	//===================================================
@@ -550,6 +568,12 @@
 
 		if(($edit_user_id == 1) and !$edit_user_enabled) {
 			$data['error'] = 'Нельзя заблокировать администратора!';
+			$log->writeln('Error: '.$data['error']);
+			die ( json_encode($data) );
+		}
+
+		if(($edit_user_id == 1) and ($edit_user_level_id !== 1)) {
+			$data['error'] = 'Нельзя изменить тип пользователя администратора!';
 			$log->writeln('Error: '.$data['error']);
 			die ( json_encode($data) );
 		}

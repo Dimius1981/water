@@ -273,7 +273,7 @@ function add_user($level_id, $name, $login, $pass, $email) {
 	global $connect;
 	global $log;
 
-	$str_pass = sha1($pass);
+	$str_pass = MD5($pass);
 	// printf($str_pass);
 
 	//Здесь перечисляются поля в том порядке в котором они в базе записаны
@@ -315,7 +315,7 @@ function upd_user($id,$level_id, $name, $login, $pass, $email,$enabled) {
 	global $connect;
 	global $log;
 
-	$str_pass = sha1($pass);
+	$str_pass = MD5($pass);
 
 	$sql = "UPDATE users SET level_id = $level_id, name = '$name', login = '$login', pass = '$str_pass', email = '$email', enabled = $enabled WHERE id = $id";
 	@mysqli_query($connect, $sql);
@@ -367,6 +367,34 @@ function upd_user_enabled($id, $enabled) {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Доступные функции пользователя
+function access_func_list($level_id) {
+	global $connect;
+	global $log;
+
+	$sql = "SELECT * FROM access_users WHERE level_id = $level_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return $result;
+	}
+}
 
 
 
