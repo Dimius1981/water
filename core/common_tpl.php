@@ -572,7 +572,7 @@
 			die ( json_encode($data) );
 		}
 
-		if(($edit_user_id == 1) and ($edit_user_level_id !== 1)) {
+		if(($edit_user_id == 1) and ($edit_user_level_id !== '1')) {
 			$data['error'] = 'Нельзя изменить тип пользователя администратора!';
 			$log->writeln('Error: '.$data['error']);
 			die ( json_encode($data) );
