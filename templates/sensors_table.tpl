@@ -1,7 +1,7 @@
 {foreach $sensors_list as $item}
 <tr class="{$item.row_style}">
   <td align="center">{$item.factorynumber}</td>
-  <td>{$item.name}</td>
+  <td><a href="?page=datatable">{$item.name}</a></td>
   <td>{$item.last_level}</td>
   <td>{$item.last_rashod}</td>
   <td>7777777</td>

@@ -219,6 +219,37 @@ $scripts = '';
 
 
 
+
+
+
+
+
+
+
+
+
+	//Страница вывода данных датчика
+	//===================================================
+	} elseif ($page == 'datatable') {
+		$content = "{include file='datatable.tpl'}";
+		//$scripts = '<script src="templates/js/users.js"></script>'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//Страница Журнал
 	//===================================================
 	} elseif ($page == 'logs') {
