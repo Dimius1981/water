@@ -1,0 +1,276 @@
+Список запросов:
+===========================
+
+1. Вывод таблицы с датчиками в виде HTML
+http://water/?page=sensors_table
+
+Вывод:
+<tr class="table-primary">
+  <td align="center">1</td>
+  <td><a href="?page=datatable">Sensor 1</a></td>
+  <td>22</td>
+  <td>0</td>
+  <td>7777777</td>
+  <td>992</td>
+  <td>2022-09-17 13:23:53</td>
+  <td>1 д. 10:36:7</td>
+  <td>
+          <button class="btn" data-bs-toggle="modal" data-bs-target="#setSensorsModal" data-sensor-num="1"><img src="templates/images/settingtrue.png"></button>
+              <button class="btn" data-bs-toggle="modal" data-bs-target="#delSensorsModal" data-sensor-num="1" data-sensor-name="Sensor 1"><img src="templates/images/deltrue.png"></button>
+      </td>
+</tr>
+<tr class="table-primary">
+...
+</tr>
+
+
+
+
+2. Добавление нового датчика
+http://water/?page=addsensor&add_sensor_name=new_sens_name&add_sensor_number=123&add_sensor_description=Description_sensor&add_sensor_phone=77017777777&add_sensor_seth=100
+
+add_sensor_name - имя датчика
+add_sensor_number - заводской номер датчика
+add_sensor_description - Описание датчика
+add_sensor_phone - номер телефона GSM-модема
+add_sensor_seth - расстояние от датчика до дна, в см
+
+Вывод:
+{"result":"OK"} - при удачном добавлении датчика
+
+{"error":"\u0414\u0430\u0442\u0447\u0438\u043a \u0441 \u043d\u043e\u043c\u0435\u0440\u043e\u043c '123' \u0443\u0436\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442!"} - при ошибке, если попытались добавить датчик с одинаковым номером
+
+
+
+
+3. Удаление датчика
+http://water/?page=delsensor&sensor_num=123
+
+sensor_num - заводской номер датчика
+
+Вывод:
+{"result":"OK"}
+
+{"error":"\u041e\u0448\u0438\u0431\u043a\u0430 \u0443\u0434\u0430\u043b\u0435\u043d\u0438\u044f \u0434\u0430\u0442\u0447\u0438\u043a\u0430!"} - ошибка при попытке удалить датчик с номером 0
+
+
+
+
+
+
+4. Запрос возвращает информацию о датчике в виде Json
+http://water/?page=getsensor&sensor_num=1
+
+sensor_num - заводской номер датчика
+
+
+Вывод:
+{"id":"1","factorynumber":"1","name":"Sensor 1","lastindication":"0","date":"2022-09-15 00:00:00","sum":"0","description":"Sensor model MSD1","model":"MSD1","high":"0","gsmnum":"0","start_work":"2022-09-19 00:00:00"}
+
+
+null - если пытаемся вывести несуществующий датчик
+
+
+
+
+
+
+5. Запрос обновления информации о датчике
+http://water/?page=updsensor&set_sensor_name=new_sens_name&set_sensor_number=123&set_sensor_description=Description_sensor&set_sensor_phone=77017777777&set_sensor_seth=100&set_sensor_start=2023-01-25
+
+set_sensor_name - новое имя датчика (можно пропустить)
+set_sensor_number - номер датчика (обязательно)
+set_sensor_description - новое описание датчика (можно пропустить)
+set_sensor_phone - новый номер телефона (можно пропустить)
+set_sensor_seth - новая высота от датчика до дна (можно пропустить)
+set_sensor_start - время запуска датчика в работу (дата)
+
+Вывод:
+{"result":"OK"}
+
+
+
+
+6. Добавление новой записи (посылается с датчика)
+http://water/?page=addrec&sens_id=123&level=100&bat=100&reset=external&lastcode=200
+
+sens_id - заводской номер датчика
+level - уровень в см
+bat - уровень заряда батареи (0..1023)
+reset - статус сброса датчика (external - сброс от внешнего воздействия, sleep - сброс после пробуждения)
+lastcode - код последнего HTTP запроса
+
+
+Вывод:
+152 - номер добавленной записи
+0 - если не удалось добавить запись
+
+
+
+
+
+
+7. Выводит HTML страницу с последними 30 записями в виде таблицы (без шаблона)
+http://water/?page=listrec&sens_id=1
+
+sens_id - заводской номер датчика
+
+
+Вывод:
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+
+    <title>Данные датчика 1</title>
+</head>
+<body>
+    <table>
+	<h3>Время работы: 1 д. 10:36:7</h3>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Level</th>
+			<th>Bat</th>
+			<th>Rashod</th>
+			<th>Date Time</th>
+			<th>Reset status</th>
+			<th>Last HTTP Code</th>
+		</tr>
+	</thead>
+	<tbody>
+					<tr>
+				<td>151</td>
+				<td>22</td>
+				<td>992</td>
+				<td>0</td>
+				<td>2022-09-17 13:23:53</td>
+				<td>external</td>
+				<td>0</td>
+			</tr>
+...
+			</tbody>
+</table></body>
+</html>
+
+
+8. Вывод строк таблицы с пользователями в HTML формате
+http://water/?page=users_table
+
+Вывод:
+<tr>
+  <td>1</td>
+  <td>Админ Юзерович</td>
+  <td>admin</td>
+  <td>2023-01-22 17:17:08</td>
+  <td>admin@uvrcloud,kz</td>
+  <td>
+    <div class="form-check form-switch">
+            <input class="form-check-input mySwitch" type="checkbox" checked data-user-id="1">
+          </div>
+  </td>
+  <td>
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#edituserModal" data-user-id="1"><img src="templates/images/pen.png"></button>
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deluserModal" data-user-id="1" data-user-name="Админ Юзерович"><img src="templates/images/del.png"></button>
+  </td>
+</tr>
+...
+
+
+
+
+
+
+9. Добавление нового пользователя
+http://water/?page=adduser&add_user_name=Новый пользоваель&add_user_login=user2&add_user_pass=123456&add_user_level_id=3&add_user_email=user2@uvrcloud.kz
+
+add_user_name - Имя нового пользователя
+add_user_login - Логин нового пользователя
+add_user_pass - пароль нового пользователя
+add_user_level_id - уровень доступа пользователя
+	1 - Администратор
+	2 - Оператор
+	3 - Наблюдатель
+
+add_user_email - Емайл пользователя
+
+
+
+Вывод:
+{"result":"OK"} - если удалось добавить пользователя
+
+{"error":"Описание ошибки"} - если не удалось добавить пользователя
+
+
+
+
+
+
+10. Удаление пользователя
+http://water/?page=deleteuser&user_id=23
+
+user_id - ID пользователя
+
+
+
+
+Вывод:
+{"result":"OK"}
+
+
+
+
+
+
+
+11. Вывод информации о пользователе в виде Json
+http://water/?page=getuser&user_id=22
+
+user_id - ID пользователя
+
+
+
+Вывод:
+{"id":"22","level_id":"3","name":"\u041d\u043e\u0432\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0435\u043b\u044c","login":"user2","pass":"e10adc3949ba59abbe56e057f20f883e","date_login":"2023-01-22 17:48:13","email":"user2@uvrcloud.kz","enabled":"1"}
+
+
+
+
+12. Обновление информации о пользователе
+http://water/?page=upduser&edit_user_name=Новый пользоваель2&edit_user_login=user2&edit_user_pass=&edit_user_level_id=3&edit_user_email=user2@uvrcloud.kz&edit_user_enabled=1&edit_user_id=22
+
+edit_user_name - Новое имя пользователя
+edit_user_login - Новый логин пользователя
+edit_user_level_id - Новый уровень доступа пользователя
+edit_user_email - Новый емайл пользователя
+edit_user_enabled - Доступность пользователя
+	1 - доступен
+	0 - не доступен
+
+
+
+Вывод:
+{"result":"OK"}
+
+
+
+
+
+
+13. Изменение доступности пользователя
+http://water/?page=upduseren&user_id=22&user_en=true
+
+user_id - ID пользователя
+user_en - true - сделать пользователя доступным, false - не доступным
+
+
+Вывод:
+{"result":"OK"}
+
+
+
+
