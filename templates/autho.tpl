@@ -17,6 +17,7 @@
       <input id="password" class='lf--input form-control' placeholder='Пароль' type='password' id="user-password" name="password" required>
     </div>
     <button class='lf--submit' type='submit'>Войти</button>
+    <!--<button id="autho" class='lf--submit' type='button'>Авторизация</button>-->
     <a class='lf--forgot' href='#'>Забыли пароль?</a>
   </form>
 
