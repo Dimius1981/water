@@ -40,7 +40,15 @@ function userinfo($session_id){
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
 		$log -> writeln("SQL = \"". $sql . "\"");
 	} else {
-	return mysqli_fetch_assoc($result);
+		$assoc_res = mysqli_fetch_assoc($result);
+		if (!$assoc_res) {
+			$assoc_res['id'] = '-1';
+			$assoc_res['level_id'] = '-1';
+			$assoc_res['name'] = '';
+			$assoc_res['login'] = '';
+			$assoc_res['pass'] = '';
+		}
+		return $assoc_res;
 	}
 }
 

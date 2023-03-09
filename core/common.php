@@ -56,7 +56,7 @@ $log->init();
 	$user_info = userinfo($session_id);
 	//print_r($user_info);
 
-if ($user_info) {
+if ($user_info['id'] > 0) {
 	$login_time_unix = strtotime($user_info['date_login']);
 
 	$user_time = $CUR_TIME - $login_time_unix;

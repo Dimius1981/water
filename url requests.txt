@@ -291,6 +291,16 @@ password=admin
 {"error":"Autorization Error"}
 
 
+POST /login.php?auth=1 HTTP/1.1
+Host: www.uvrcloud.kz
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+
+login=admin&password=ad123min456
+
+
+
+
 
 
 15. Запрос логаута
@@ -302,5 +312,6 @@ GET запрос http://water/login.php?auth=1&logout=true
 {"error":"Autorization Error"}
 
 
-
+GET /login.php?auth=1&logout=true HTTP/1.1
+Host: www.uvrcloud.kz
 
