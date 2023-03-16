@@ -408,9 +408,14 @@
 			$user_list_arr[] = $row;
 		}
 
+		if ($count_data == 0) $count_data = NULL;
+		$user_list_vew = array_slice($user_list_arr, $start_data, $count_data);
+		$tpl->assign('userlist_arr', $user_list_vew);
+		if ($f_value == 'json')
+			die ( json_encode($user_list_vew) );
+		else if ($f_value == '')
+			$tpl->display('blank.tpl');
 
-		$tpl->assign('userlist_arr', $user_list_arr);
-		$tpl->display('blank.tpl');
 
 
 
