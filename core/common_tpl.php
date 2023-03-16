@@ -84,8 +84,13 @@
 			$sensors_arr[] = $row;
 		}
 
-		$tpl->assign('sensors_list', $sensors_arr);
-		$tpl->display('blank.tpl');
+		if ($count_data == 0) $count_data = NULL;
+		$sensors_vew = array_slice($sensors_arr, $start_data, $count_data);
+		$tpl->assign('sensors_list', $sensors_vew);
+		if ($f_value == 'json')
+			die ( json_encode($sensors_vew) );
+		else if ($f_value == '')
+			$tpl->display('blank.tpl');
 
 
 
@@ -344,7 +349,7 @@
 
 		$tpl->assign('PageTitle', 'Данные датчика '.$sens_id);
 
-		$list_rec_obj = list_records($sens_id);
+		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
 		$list_rec_arr = Array();
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
 			$list_rec_arr[] = $row;
@@ -366,7 +371,10 @@
 
 		$tpl->assign('sensor_date_live', $sensor_date_live->format("%d д. %H:%i:%s"));
 
-		$tpl->display('empty.tpl');
+		if ($f_value == 'json')
+			die ( json_encode($list_rec_arr) );
+		else
+			$tpl->display('empty.tpl');
 
 
 	//Страница отображает загруженные файлы

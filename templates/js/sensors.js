@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	//Обновление таблицы 1 раз в секунду
     setInterval(function(){
-		$.get('?page=sensors_table', function(data) {
+		$.get('?page=sensors_table&start='+start_data+'&count='+count_data, function(data) {
 			$('.tbody_tablemain').html(data);
 		});
     }, 1000);

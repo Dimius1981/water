@@ -37,6 +37,7 @@ class logFile {
 
 } // logFile
 
+
 //Создадим и инициируем объект log-файла
 $log = new logFile;
 $log->init();
@@ -51,6 +52,18 @@ $log->init();
 		$session_id = -1;
 	} else {
 		$session_id = $_SESSION['id'];
+	}
+
+	if(isset($_GET['start'])){
+		$start_data = $_GET['start'];
+	}else{
+		$start_data = 0;
+	}
+
+	if(isset($_GET['count'])){
+		$count_data = $_GET['count'];
+	}else{
+		$count_data = 0;
 	}
 
 	$user_info = userinfo($session_id);
@@ -78,7 +91,11 @@ $scripts = '';
 	//===================================================
 	if ($page == '') {
 		$content = "{include file='tablemain.tpl'}";
-		$scripts = '<script src="templates/js/sensors.js"></script>';
+		$scripts = '<script src="templates/js/sensors.js"></script>
+		<script type="text/javascript">
+			var start_data = '.$start_data.';
+			var count_data = '.$count_data.';
+		</script>';
 
 
 

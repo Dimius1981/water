@@ -106,11 +106,15 @@ function add_record($sensor_id, $level, $bat, $rashod, $reset, $lastcode) {
 
 
 //Функция выводит последние 30 записей датчика sensor_id
-function list_records($sensor_id){
+function list_records($sensor_id, $start = 0, $count = 0){
 	global $connect;
 	global $log;
 
-	$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC LIMIT 30;";
+	if (($start >= 0) && ($count > 0))
+		$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC LIMIT $start, $count;";
+	else
+		$sql = "SELECT * FROM records WHERE sensor_id = $sensor_id ORDER BY date_insert DESC;";
+
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");

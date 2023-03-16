@@ -2,7 +2,10 @@
 ===========================
 
 1. Вывод таблицы с датчиками в виде HTML
-http://water/?page=sensors_table
+http://water/?page=sensors_table&start=0&count=5
+
+start - указывает начальный индекс данных
+count - указывает количество запрашиваемых данных
 
 Вывод:
 <tr class="table-primary">
