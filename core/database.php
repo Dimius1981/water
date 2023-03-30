@@ -15,7 +15,7 @@ function authorization($login, $password){
 
 	$new_pass = MD5($password);
 	//echo $new_pass;
-	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$new_pass'";
+	$sql = "SELECT * FROM users WHERE login = '$login' AND pass = '$new_pass' AND enabled = 1";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
