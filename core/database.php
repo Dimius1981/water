@@ -105,7 +105,8 @@ function add_record($sensor_id, $level, $bat, $rashod, $reset, $lastcode) {
 
 
 
-//Функция выводит последние 30 записей датчика sensor_id
+//Функция выводит последние count записей датчика sensor_id
+//наиная с start
 function list_records($sensor_id, $start = 0, $count = 0){
 	global $connect;
 	global $log;
@@ -155,7 +156,7 @@ function get_sensor_by_id($sensor_id){
 	global $connect;
 	global $log;
 
-	$sql = "SELECT * FROM sensors WHERE factorynumber = $sensor_id;";
+	$sql = "SELECT * FROM sensors WHERE id = $sensor_id;";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
@@ -398,6 +399,28 @@ function access_func_list($level_id) {
 	global $log;
 
 	$sql = "SELECT * FROM access_users WHERE level_id = $level_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return $result;
+	}
+}
+
+
+
+
+
+
+
+//Функция возвращает количество записей у датчика с sens_id
+function get_count_rec_by_id($sens_id) {
+	global $connect;
+	global $log;
+
+	$sql = "SELECT count(id) FROM records WHERE sensor_id = $sens_id;";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");

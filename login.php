@@ -35,6 +35,7 @@
 			$data['result'] = 'Autorization OK';
 		} else {
 			$data['error'] = 'Autorization Error';
+			http_response_code(401);
 		}
 
 		die ( json_encode($data) );

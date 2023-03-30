@@ -666,6 +666,53 @@
 	//===================================================
 	} elseif ($page == 'datatable') {
 		$tpl->assign('PageTitle', 'Data Table');
+
+		//id - датчика
+		if (isset($_GET['sens_id'])) {
+			$sens_id = $_GET['sens_id'];
+		} else {
+			$sens_id = 0;
+		}
+
+		//Pagination
+		$col_rec_obj = get_count_rec_by_id($sens_id);
+		$col_rec = mysqli_fetch_assoc($col_rec_obj);
+		$col = $col_rec['count(id)'];
+		$page_rec = intdiv($col, $MAX_RECORDS_PAGE);
+		$page_half = $col % $MAX_RECORDS_PAGE;
+		//echo $col. ' / '. $page_prod. ' / '. $page_half;
+
+		$pagination = Array();
+		for ($i = 0; $i < $col; $i = $i + $MAX_RECORDS_PAGE) {
+			$pagination[] = $i;
+		}
+
+		//print_r($pagination);
+
+		$prev_page = $start_data - $MAX_RECORDS_PAGE;
+		if ($prev_page < 0)
+			$prev_page = -1;
+
+		$next_page = $start_data + $MAX_RECORDS_PAGE;
+		if ($next_page > $col)
+			$next_page = -1;
+
+		$tpl->assign('pagination', $pagination);
+		$tpl->assign('start', $start_data);
+		$tpl->assign('prev_page', $prev_page);
+		$tpl->assign('next_page', $next_page);
+
+		$sensor_info_res = get_sensor_by_id($sens_id);
+		$sensor_info_arr = mysqli_fetch_assoc($sensor_info_res);
+
+		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
+		$list_rec_arr = Array();
+		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
+			$list_rec_arr[] = $row;
+		}
+		$tpl->assign('listrec', $list_rec_arr);
+		$tpl->assign('sensor_info', $sensor_info_arr);
+
 		$tpl->display('main.tpl');
 
 

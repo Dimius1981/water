@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-3">
         <h2>
-          <a href="/"><img src="./templates/images/arrow-left.png"></a> Sensor 1
+          <a href="/"><img src="./templates/images/arrow-left.png"></a> {$sensor_info.name}
         </h2>
       </div>
       <div class="col-md-5">
@@ -70,47 +70,49 @@
           <thead class="table">
             <tr>
               <th>ID</th>
-              <th>Level</th>
-              <th>Bat</th>
-              <th>Rashod</th>
-              <th>Date </th>
-              <th>time </th>
-
+              <th>Уровень, см.</th>
+              <th>Расход, м<sup>3</sup></th>
+              <th>Дата и время</th>
+              <th>Заряд акк.</th>
             </tr>
           </thead>
           <tbody>
+            {foreach $listrec as $item}
             <tr>
-              <td>6</td>
-              <td>100</td>
-              <td>100</td>
-              <td>0</td>
-              <td>11.11.2022</td>
-              <td>19:53:46</td>
+              <td>{$item.id}</td>
+              <td>{$item.level}</td>
+              <td>{$item.rashod}</td>
+              <td>{$item.date_insert}</td>
+              <td>{$item.bat}</td>
             </tr>
-            <tr>
-              <td>6</td>
-              <td>100</td>
-              <td>100</td>
-              <td>0</td>
-              <td>11.11.2022</td>
-              <td>19:53:46</td>
-            </tr><tr>
-              <td>6</td>
-              <td>100</td>
-              <td>100</td>
-              <td>0</td>
-              <td>11.11.2022</td>
-              <td>19:53:46</td>
-            </tr><tr>
-              <td>6</td>
-              <td>100</td>
-              <td>100</td>
-              <td>0</td>
-              <td>11.11.2022</td>
-              <td>19:53:46</td>
-            </tr>
+            {/foreach}
           </tbody>
         </table>
+
+<nav aria-label="Навигация по страницам">
+  <ul class="pagination justify-content-center">
+    {if $prev_page < 0}
+      <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущая</a></li>
+    {else}
+      <li class="page-item"><a class="page-link" href="/?page=datatable&sens_id={$sensor_info.id}&start={$prev_page}&count=30">Предыдущая</a></li>
+    {/if}
+    {$page_count = 1}
+    {foreach $pagination as $item}
+      {if $item == $start}
+        <li class="page-item active" aria-current="page"><a class="page-link" href="/?page=datatable&sens_id={$sensor_info.id}&start={$item}&count=30">{$page_count}</a></li>
+      {else}
+        <li class="page-item"><a class="page-link" href="/?page=datatable&sens_id={$sensor_info.id}&start={$item}&count=30">{$page_count}</a></li>
+      {/if}
+      {$page_count = $page_count + 1}
+    {/foreach}
+    {if $next_page < 0}
+      <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Следующая</a></li>
+    {else}
+      <li class="page-item"><a class="page-link" href="/?page=datatable&sens_id={$sensor_info.id}&start={$next_page}&count=30">Следующая</a></li>
+    {/if}
+  </ul>
+</nav>
+
     </div>
     <div id="menu1" class="container tab-pane fade mr3"><br>
       <img src="graph.png">

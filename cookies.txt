@@ -1,0 +1,6 @@
+Получили после запроса авторизации:
+Set-Cookie: PHPSESSID=0efeca2704c237d98528bb4f4c376509; path=/
+
+
+Добавляем в заголовки запросов:
+Cookie: PHPSESSID=0efeca2704c237d98528bb4f4c376509

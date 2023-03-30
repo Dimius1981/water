@@ -14,6 +14,7 @@ if ($NOAUTH == 1 || $_SESSION['id'] >= 1) {
 } else {
 	if ($f_value == 'json') {
 		$data['error'] = 'Autorization Error';
+		http_response_code(401);
 		die ( json_encode($data) );
 	} else if ($f_value == '') {
 		header( 'Location: ./login.php', true, 301 );
