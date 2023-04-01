@@ -115,7 +115,7 @@
 
     </div>
     <div id="menu1" class="container tab-pane fade mr3"><br>
-      <img src="graph.png">
+      <img src="./templates/html/table/graph.png">
     </div>
     <div id="menu2" class="container tab-pane fade mr3"><br>
       <table class="table">

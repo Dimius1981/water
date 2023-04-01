@@ -270,7 +270,7 @@ $scripts = '';
 	//Страница Журнал
 	//===================================================
 	} elseif ($page == 'logs') {
-		// $content = "{include file='logs.tpl'}";
+		$content = "{include file='logs.tpl'}";
 
 
 
