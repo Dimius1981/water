@@ -312,11 +312,11 @@
 			for ($idx = 0; $idx < count($arr_level); $idx++) {
 
 				//Проверим введенные данные, нет ли пустых ячеек
-				if (($arr_level[$idx] == '') ||
-					($arr_rashod[$idx] == '')) {
-					$res = 0;
-					$data['error'] = 'Обнаружена пустая ячейка в таблице!';
-					break;
+				if ($arr_level[$idx] == '') {
+					$arr_level[$idx] = 0;
+				}
+				if ($arr_rashod[$idx] == '') {
+					$arr_rashod[$idx] = 0;
 				}
 
 				//Добавим новую запись с расходом и уровнем
