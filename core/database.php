@@ -156,7 +156,7 @@ function get_sensor_by_id($sensor_id){
 	global $connect;
 	global $log;
 
-	$sql = "SELECT * FROM sensors WHERE id = $sensor_id;";
+	$sql = "SELECT * FROM sensors WHERE factorynumber = $sensor_id;";
 	$result = @mysqli_query($connect, $sql);
 	if (!$result) {
 		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
