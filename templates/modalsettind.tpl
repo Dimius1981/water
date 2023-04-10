@@ -63,57 +63,47 @@
             </div>
             <div id="sens_table" class="tab-pane fade">
               <div class="btn-group">
-                <button type="button" class="btn btn-success">Добавить</button>
-                <button type="button" class="btn btn-danger">Удалить</button>
-                <button type="button" class="btn btn-secondary">Изменить</button>
+                <button type="button" class="btn btn-success" id="btn_table_add">Добавить</button>
+                <button type="button" class="btn btn-danger" id="btn_table_del">Удалить</button>
+                <button type="button" class="btn btn-light" id="btn_table_clear">Очистить</button>
               </div>
 
-              <table class="table">
+              <div class="scroll_table">
+              <table class="table" id="settings_table">
                 <thead>
                   <tr>
+                    <th>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tbl_sel_all">
+                      </div>
+                    </th>
                     <th>№</th>
                     <th>Уровень (см)</th>
                     <th>Расход (м3)</th>
-                    <th></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
+                <tbody id="settings_table_body">
+                  <tr class="trow">
                     <td>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-                        <label class="form-check-label"></label>
+                        <input class="form-check-input" type="checkbox" name="cb_row" value="1">
                       </div>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td><span class="num_rec">1</span></td>
                     <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-                        <label class="form-check-label"></label>
+                      <div class="form-group">
+                        <input type="number" class="form-control level_num" name="level_num_row[]">
                       </div>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
                     <td>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-                        <label class="form-check-label"></label>
+                      <div class="form-group">
+                        <input type="number" class="form-control rashod_num" name="rashod_num_row[]">
                       </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <button type="button" class="btn btn-light">Очистить</button>
+              </div>
             </div>
             <div id="sens_log" class="tab-pane fade">
               <label for="user-description" class="col-form-label">Информация</label>
@@ -128,6 +118,8 @@
           <button type="button" class="btn btn-danger me-auto" data-bs-dismiss="modal">Отмена</button>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
+        <input type="hidden" name="iseditsettings" value="0">
+        <input type="hidden" name="isedittable" value="0">
       </form>
     </div>
   </div>

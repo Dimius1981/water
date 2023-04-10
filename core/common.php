@@ -136,6 +136,22 @@ $scripts = '';
 
 
 
+	//Обновление таблицы кривой расходов Json
+	//===================================================
+	} elseif ($page == 'updlevelrashod') {
+		$content = 'Update table level rashod page';
+
+
+
+
+	//Выводит записи из таблицы кривой расходов Json
+	//===================================================
+	} elseif ($page == 'listlevelrashod') {
+		$content = 'List of table level rashod page';
+
+
+
+
 
 
 		

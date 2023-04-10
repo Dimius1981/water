@@ -433,4 +433,80 @@ function get_count_rec_by_id($sens_id) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Добавляет новую запись в таблицу level_rashod
+function add_lvlras($sensor_id, $level, $rashod) {
+	global $connect;
+	global $log;
+
+	$sql = "INSERT INTO level_rashod(id, sensor_id, level, rashod) VALUES (NULL, $sensor_id, $level, $rashod);";
+
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return mysqli_insert_id($connect);
+	}
+}
+
+
+
+
+
+//Удаляет записи из таблицы level_rashod
+function del_lvlras($sensor_id) {
+	global $connect;
+	global $log;
+
+	$sql = "DELETE FROM level_rashod WHERE sensor_id = $sensor_id";
+	@mysqli_query($connect, $sql);
+	if (mysqli_error($connect)) {
+		$log -> writeln("MySQL Error: ".mysqli_error($connect)."\r\n");
+		$log -> writeln("SQL = \"". $sql . "\"");
+		return 0;
+	} else {
+		return 1;
+	}
+}
+
+
+
+
+
+// Вывод записи для датчика sensor_id из таблицы level_rashod
+function list_lvlras($sensor_id) {
+	global $connect;
+	global $log;
+
+	$sql = "SELECT * FROM level_rashod WHERE sensor_id = $sensor_id;";
+	$result = @mysqli_query($connect, $sql);
+	if (!$result) {
+		echo "MySQL Error: ".mysqli_error($connect)."</br>";
+		echo "SQL = \"". $sql . "\"";
+		return 0;
+	} else {
+		return $result;
+	}
+}
+
 ?>

@@ -286,6 +286,85 @@
 
 
 
+	//Обновление таблицы кривой расходов Json
+	//===================================================
+	} elseif ($page == 'updlevelrashod') {
+		$log->writeln('Update table level rashod:');
+		$log->writeln(json_encode($_GET));
+
+		$arr_level = $_GET['level_num_row'];
+		$arr_rashod = $_GET['rashod_num_row'];
+		$sens_id = $_GET['set_sensor_number'];
+		//print_r($arr_level);
+		//print_r($arr_rashod);
+
+		//echo 'arr_level length = '.count($arr_level).'</br>';
+		//echo 'arr_rashod length = '.count($arr_rashod).'</br>';
+
+		$data = Array();
+
+		//Очистим таблицу от старых записей
+		$res = del_lvlras($sens_id);
+		if (!$res) {
+			$data['error'] = 'Не удалось очистить старые записи из БД!';
+			$log->writeln('Error: '.$data['error']);
+		} else {
+			for ($idx = 0; $idx < count($arr_level); $idx++) {
+
+				//Проверим введенные данные, нет ли пустых ячеек
+				if (($arr_level[$idx] == '') ||
+					($arr_rashod[$idx] == '')) {
+					$res = 0;
+					$data['error'] = 'Обнаружена пустая ячейка в таблице!';
+					break;
+				}
+
+				//Добавим новую запись с расходом и уровнем
+				$res = add_lvlras($sens_id, $arr_level[$idx], $arr_rashod[$idx]);
+				if (!$res) {
+					$data['error'] = 'Не удалось сохранить запись в БД!';
+					$log->writeln('Error: '.$data['error']);
+					break;
+				}
+			}
+		}
+
+		if ($res > 0) {
+			$data['result'] = 'OK';
+		} else {
+			$log->writeln('Error: '.$data['error']);
+		}
+
+		die ( json_encode($data) );
+
+
+
+
+
+	//Выводит записи из таблицы кривой расходов Json
+	//===================================================
+	} elseif ($page == 'listlevelrashod') {
+		if(isset($_GET['sensor_num'])){
+			$sensor_num = $_GET['sensor_num'];
+		}else{
+			$sensor_num = 0;
+		};
+
+		if ($sensor_num > 0) {
+			$listlvlras_res = list_lvlras($sensor_num);
+			$listlvlras_arr = Array();
+			while($row = mysqli_fetch_assoc($listlvlras_res)) {
+				$listlvlras_arr[] = $row;
+			};
+		};
+
+		die ( json_encode($listlvlras_arr) );
+
+
+
+
+
+
 	//Страница добавления новой записи
 	//===================================================
 	} elseif ($page == 'addrec') {

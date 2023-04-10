@@ -6,6 +6,10 @@ var set_visited_tabs = new Map([
 	['#sens_log', 0]
 ]);
 
+var count_rec_table = 1;
+var checked_rows = [];
+var sensor_num = 0;
+
 $(document).ready(function(){
 
 	//Обновление таблицы 1 раз в секунду
@@ -99,18 +103,40 @@ $(document).ready(function(){
 		submitHandler: function(form) {
 			var str_ser = $(form).serialize();
 			console.log(str_ser);
-			$.get('?page=updsensor&'+str_ser, function(data){
-				console.log('Result: '+data.result);
-				if (data.result == 'OK') {
-					//выведем уведомление о успешном добавлении
-					toastr.success('Настройки датчика сохранены!');
-				} else {
-					//выведем сообщение об ошибке
-					toastr.error(data.error);
-				}
+			if (form.iseditsettings.value == 1) {
+				//alert('Save Settings!');
+				$.get('?page=updsensor&'+str_ser, function(data){
+					console.log('Result: '+data.result);
+					if (data.result == 'OK') {
+						//выведем уведомление о успешном добавлении
+						toastr.success('Настройки датчика сохранены!');
+					} else {
+						//выведем сообщение об ошибке
+						toastr.error(data.error);
+					}
+					//Закроем модальное окно
+					$('.modal').modal('hide');
+				}, 'json');
+			} else if (form.isedittable.value == 1) {
+				//alert('Save Table!');
+				$.get('?page=updlevelrashod&'+str_ser, function(data){
+					console.log('Result: '+data.result);
+					if (data.result == 'OK') {
+						//выведем уведомление о успешном добавлении
+						toastr.success('Настройки датчика сохранены!');
+					} else {
+						//выведем сообщение об ошибке
+						toastr.error(data.error);
+					}
+					//Закроем модальное окно
+					$('.modal').modal('hide');
+				}, 'json');
+			} else {
+				//выведем сообщение об ошибке
+				toastr.error('Настройки не были изменены!');
 				//Закроем модальное окно
 				$('.modal').modal('hide');
-			}, 'json');
+			}
 		},
 		errorElement: 'span',
 		errorPlacement: function (error, element) {
@@ -124,8 +150,6 @@ $(document).ready(function(){
 			$(element).removeClass('is-invalid');
 		}
 	});
-
-
 
 
 
@@ -175,7 +199,7 @@ $(document).ready(function(){
 
 	//Открытие окна настроек датчика
 	$('#setSensorsModal').on('show.bs.modal', function(e){
-		var sensor_num = $(e.relatedTarget).data('sensor-num');
+		sensor_num = $(e.relatedTarget).data('sensor-num');
 		console.log('Settings sensor: '+sensor_num);
 		//$('#del_sensor_button').data('sensor-num', sensor_num);
 
@@ -184,8 +208,12 @@ $(document).ready(function(){
 			set_visited_tabs.set(key, 0);
 		}
 		set_visited_tabs.set('#sens_settings', 1);
+		$('.nav-pills a[href="#sens_settings"]').tab('show');
 
 		$('.is-invalid').removeClass('is-invalid');
+
+		$('input[name="iseditsettings"]').val(0);
+		$('input[name="isedittable"]').val(0);
 
 		//Раз открыта первая вкладка, то запросим информацию о нужном датчике
 		$.get('?page=getsensor&sensor_num='+sensor_num, function(data){
@@ -220,6 +248,53 @@ $(document).ready(function(){
 			switch (new_tab) {
 				case '#sens_table':
 					console.log('Sensor Table tab!');
+
+					count_rec_table = 1;
+
+					//Очистим строк таблицы
+		      		$('.trow').each(function(index, el) {
+		      			if ($(".trow").length > 1) {
+	      					$(el).find(':input').off();
+	      					$(el).remove();
+	      				} else {
+	      					$(el).find(':input').val('');
+							$(el).find(':checkbox').prop('checked', false).val(count_rec_table);
+							$(el).find('.num_rec').html(count_rec_table);
+	      				}
+	      			});
+
+					//Загрузим данные для таблицы
+					$.get('?page=listlevelrashod&sensor_num='+sensor_num, function(data){
+						console.log('Result Json:');
+						console.log(JSON.stringify(data));
+
+						//Заполним таблицу
+						$.each(data, function(idx, elem){
+							console.log(idx+": "+JSON.stringify(elem));
+		if (idx == 0) {
+			var template = $("tr.trow:first");
+			template.find(':checkbox').prop('checked', false).val(count_rec_table);
+			template.find('input[name="level_num_row[]"]').val(elem.level);
+			template.find('input[name="rashod_num_row[]"]').val(elem.rashod);
+			template.find('.num_rec').html(count_rec_table);
+		} else {
+			count_rec_table++;
+			var template = $("tr.trow:first");
+			var newRow = template.clone();
+			newRow.find(':checkbox').prop('checked', false).val(count_rec_table);
+			newRow.find('input[name="level_num_row[]"]').val(elem.level);
+			newRow.find('input[name="rashod_num_row[]"]').val(elem.rashod);
+			newRow.find('.num_rec').html(count_rec_table);
+			newRow.find(':input').on('change', function() {
+				//alert('Change!');
+				$('input[name="isedittable"]').val(1);
+			});
+			var lastRow = $("tr.trow:last").after(newRow);
+		}
+						});
+
+					}, 'json');
+
 					break;
 				case '#sens_log':
 					console.log('Sensor Log tab!');
@@ -227,6 +302,128 @@ $(document).ready(function(){
 			}
 			set_visited_tabs.set(new_tab, 1);
 		}
+	});
+
+
+	$('#btn_table_add').on('click', function(){
+		//alert('btn_table_add');
+		count_rec_table++;
+		var template = $("tr.trow:first");
+		var newRow = template.clone();
+		newRow.find(':input').val('');
+		newRow.find(':checkbox').prop('checked', false).val(count_rec_table);
+		newRow.find('.num_rec').html(count_rec_table);
+
+		newRow.find(':input').on('change', function() {
+			//alert('Change!');
+			$('input[name="isedittable"]').val(1);
+		});
+
+		var lastRow = $("tr.trow:last").after(newRow);
+	});
+
+	$('#btn_table_del').on('click', function(){
+		//alert('btn_table_del');
+		checked_rows = [];
+		$('input[name="cb_row"]:checked').each(function() {
+        	checked_rows.push($(this).val());
+      	});
+      	console.log('checked_rows: '+checked_rows);
+      	if (checked_rows.length == 0) {
+      		toastr.error('Нужно выбрать хотябы одну строку!');
+      	} else {
+      		//Удалим строки
+      		$.each(checked_rows, function(rows_idx, rows_val){
+      			console.log('idx: '+rows_idx+', val: '+rows_val);
+
+	      		$('.trow').each(function(index, el) {
+	      			console.log($(el).find(':checkbox').val());
+
+	      			if ($(el).find(':checkbox').val() == rows_val) {
+	      				if ($(".trow").length > 1) {
+	      					$(el).find(':input').off();
+	      					$(el).remove();
+
+	      					return false;
+	      				} else {
+	      					$(el).find(':input').val('');
+	      				}
+	      			}
+	      		});
+      		});
+
+			//Перенумеруем строки
+			count_rec_table = 0;
+			$('.trow').each(function(index, el) {
+				count_rec_table++;
+				$(el).find(':checkbox').prop('checked', false).val(count_rec_table);
+				$(el).find('.num_rec').html(count_rec_table);
+			});
+
+  			$('input[name="tbl_sel_all"]').prop('checked', false);
+			$('input[name="isedittable"]').val(1);
+
+			toastr.success('Строки успешно удалены!');
+      	}
+	});
+
+	$('#btn_table_clear').on('click', function(){
+		//alert('btn_table_clear');
+		count_rec_table = 0;
+		$('.trow').each(function(index, el) {
+			count_rec_table++;
+			$(el).find(':input').val('');
+			$(el).find(':checkbox').prop('checked', false).val(count_rec_table);
+			$(el).find('.num_rec').html(count_rec_table);
+		});
+	});
+
+	$('input[name="tbl_sel_all"]').change(function(){
+		var all_check = $(this).prop('checked');
+		$('input[name="cb_row"]').each(function() {
+		    if (all_check) {
+		    	$(this).prop('checked', true);
+		    } else {
+		    	$(this).prop('checked', false);
+		    }
+		});
+	});
+
+
+
+	$('#set_sensor_name').on('change', function() {
+		//alert('Change!');
+		$('input[name="iseditsettings"]').val(1);
+	});
+
+	$('#set_sensor_description').on('change', function() {
+		//alert('Change!');
+		$('input[name="iseditsettings"]').val(1);
+	});
+
+	$('#set_sensor_phone').on('change', function() {
+		//alert('Change!');
+		$('input[name="iseditsettings"]').val(1);
+	});
+
+	$('#set_sensor_seth').on('change', function() {
+		//alert('Change!');
+		$('input[name="iseditsettings"]').val(1);
+	});
+
+	$('#set_sensor_start').on('change', function() {
+		//alert('Change!');
+		$('input[name="iseditsettings"]').val(1);
+	});
+
+	$('input[name="level_num_row"]').on('change', function() {
+		//alert('Change!');
+		$('input[name="isedittable"]').val(1);
+	});
+
+	$('input[name="rashod_num_row"]').on('change', function() {
+		//alert('Change!');
+		$('input[name="isedittable"]').val(1);
 	});
 
 });
