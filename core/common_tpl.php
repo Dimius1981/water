@@ -797,17 +797,17 @@
 		$B2 = 0;
 
 		while($row = mysqli_fetch_assoc($listlvlras_res)) {
-			$i = 250; 
 			$listlvlras_arr[] = $row;
 			$massivlvl[] = $row['level'];
 			$massivras[] = $row['rashod'];
 		};
-				
+		$countmassiv = count($massivlvl);
+		$i = 0;
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
-			$row['new_level'] =  $sensor_info_arr['high'] - $row['level'];   
+			$row['new_level'] =  1000 - $row['level'];   //$sensor_info_arr['high'] вместо 1000
 			$lvl = $row['new_level'];
-			for ($i = 0; $i < count($massivlvl); $i++) {
-			$j = 250;
+			$j = $lvl;
+			for ($i = 0; $i < $countmassiv; $i++) {
 			if ($j > $massivlvl[$i]) {
 				$A1 = $massivlvl[$i];
 				$A2 = $massivlvl[$i+1];
@@ -819,7 +819,6 @@
 			$b = $B2 - $k*$A2;
 			$row['new_rashod'] = $row['new_level'] * $k + $b;
 			$list_rec_arr[] = $row;
-
 		};
 		$tpl->assign('listrec', $list_rec_arr);
 		$tpl->assign('sensor_info', $sensor_info_arr);
