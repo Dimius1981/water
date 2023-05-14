@@ -404,6 +404,8 @@
 			$lastcode = '';
 		}
 
+
+
 		$log -> writeln("Add new rec:");
 		$log -> writeln("sens_id = ".$sens_id.", level = ".$level.
 			", bat = ".$bat.", reset = ".$reset);
@@ -757,14 +759,14 @@
 		$col_rec_obj = get_count_rec_by_id($sens_id);
 		$col_rec = mysqli_fetch_assoc($col_rec_obj);
 		$col = $col_rec['count(id)'];
-		$page_rec = intdiv($col, $MAX_RECORDS_PAGE);
-		$page_half = $col % $MAX_RECORDS_PAGE;
+		// $page_rec = intdiv($col, $MAX_RECORDS_PAGE);
+		// $page_half = $col % $MAX_RECORDS_PAGE;
 		//echo $col. ' / '. $page_prod. ' / '. $page_half;
 
-		$pagination = Array();
-		for ($i = 0; $i < $col; $i = $i + $MAX_RECORDS_PAGE) {
-			$pagination[] = $i;
-		}
+		// $pagination = Array();
+		// for ($i = 0; $i < $col; $i = $i + $MAX_RECORDS_PAGE) {
+		// 	$pagination[] = $i;
+		// }
 
 		//print_r($pagination);
 
@@ -783,14 +785,45 @@
 
 		$sensor_info_res = get_sensor_by_id($sens_id);
 		$sensor_info_arr = mysqli_fetch_assoc($sensor_info_res);
-
+		
 		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
 		$list_rec_arr = Array();
+		$sensor_num = 1;
+		$listlvlras_res = list_lvlras($sensor_num);
+		$listlvlras_arr = Array();
+		$A1 = 0;
+		$A2 = 0;
+		$B1 = 0;
+		$B2 = 0;
+
+		while($row = mysqli_fetch_assoc($listlvlras_res)) {
+			$i = 250; 
+			$listlvlras_arr[] = $row;
+			$massivlvl[] = $row['level'];
+			$massivras[] = $row['rashod'];
+		};
+				
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
+			$row['new_level'] =  $sensor_info_arr['high'] - $row['level'];   
+			$lvl = $row['new_level'];
+			for ($i = 0; $i < count($massivlvl); $i++) {
+			$j = 250;
+			if ($j > $massivlvl[$i]) {
+				$A1 = $massivlvl[$i];
+				$A2 = $massivlvl[$i+1];
+				$B1 = $massivras[$i];
+				$B2 = $massivras[$i+1];
+				};
+			};
+			$k = ($B2-$B1)/($A2-$A1);
+			$b = $B2 - $k*$A2;
+			$row['new_rashod'] = $row['new_level'] * $k + $b;
 			$list_rec_arr[] = $row;
-		}
+
+		};
 		$tpl->assign('listrec', $list_rec_arr);
 		$tpl->assign('sensor_info', $sensor_info_arr);
+		$tpl->assign('list_rashod', $listlvlras_arr);
 
 		$tpl->display('main.tpl');
 

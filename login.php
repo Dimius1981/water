@@ -4,7 +4,7 @@
 	include('./configs/config.php');
 	include('./core/libs/Smarty.class.php'); //Шаблонизатор
 	include('./core/database.php');
-
+	
 	if (empty($_GET['auth'])) {
 		$tpl = new Smarty; //Создание объекта Smarty
 
