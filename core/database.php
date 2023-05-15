@@ -87,11 +87,11 @@ function userlogout($userid) {
 
 
 // Добавляет новую запись в таблицу records
-function add_record($sensor_id, $level, $bat, $rashod, $reset, $lastcode) {
+function add_record($sensor_id, $level, $new_level, $bat, $rashod, $reset, $lastcode) {
 	global $connect;
 	global $log;
 
-	$sql = "INSERT INTO records(id, sensor_id, level, bat, rashod, date_insert, reset, lastcode) VALUES (NULL, $sensor_id, $level, $bat, $rashod, NOW(), '$reset', $lastcode);";
+	$sql = "INSERT INTO records(id, sensor_id, level, new_level, bat, rashod, date_insert, reset, lastcode) VALUES (NULL, $sensor_id, $level, $new_level, $bat, $rashod, NOW(), '$reset', $lastcode);";
 
 	@mysqli_query($connect, $sql);
 	if (mysqli_error($connect)) {

@@ -404,12 +404,52 @@
 			$lastcode = '';
 		}
 
+		//расчет уровня Hw = H - Hsens
+		$sensor_info_res = get_sensor_by_id($sens_id);
+		$sensor_info_arr = mysqli_fetch_assoc($sensor_info_res);	
+		$new_level =  $sensor_info_arr['high'] - $level; 
+				
+		// 4 точки
+		$A1 = 0; // X1
+		$A2 = 0; // X2
+		$B1 = 0; // Y1
+		$B2 = 0; // Y2
 
+		// обращение к таблице расход
+		$listlvlras_res = list_lvlras($sens_id);
+		$listlvlras_arr = Array();
+		while($row = mysqli_fetch_assoc($listlvlras_res)) {
+			$listlvlras_arr[] = $row;
+			$massivlvl[] = $row['level']; // массив для X
+			$massivras[] = $row['rashod']; // массив для Y
+		};
 
+		// счетчик для цикла
+		$countmassiv = count($massivlvl); 
+
+		//Условие к уравенинию прямой
+		if ($new_level > 0 ){
+			$j = $new_level;
+			for ($i = 0; $i < $countmassiv; $i++) {
+				if ($j > $massivlvl[$i]) {
+					$A1 = $massivlvl[$i];
+					$A2 = $massivlvl[$i+1];
+					$B1 = $massivras[$i];
+					$B2 = $massivras[$i+1];
+				};
+			};
+			$k = ($B2-$B1)/($A2-$A1);
+			$b = $B2 - $k*$A2;
+			$rashod = $new_level * $k + $b;
+		}else{
+			$rashod = 0;
+		};
+			
+		
 		$log -> writeln("Add new rec:");
 		$log -> writeln("sens_id = ".$sens_id.", level = ".$level.
 			", bat = ".$bat.", reset = ".$reset);
-		echo add_record($sens_id, $level, $bat, 0, $reset, $lastcode);
+		echo add_record($sens_id, $level, $new_level, $bat, $rashod,  $reset, $lastcode); // $new_level добавить + бд
 
 
 
@@ -759,16 +799,16 @@
 		$col_rec_obj = get_count_rec_by_id($sens_id);
 		$col_rec = mysqli_fetch_assoc($col_rec_obj);
 		$col = $col_rec['count(id)'];
-		// $page_rec = intdiv($col, $MAX_RECORDS_PAGE);
-		// $page_half = $col % $MAX_RECORDS_PAGE;
-		//echo $col. ' / '. $page_prod. ' / '. $page_half;
+		$page_rec = intdiv($col, $MAX_RECORDS_PAGE);
+		$page_half = $col % $MAX_RECORDS_PAGE;
+		// echo $col. ' / '. $page_prod. ' / '. $page_half;
 
-		// $pagination = Array();
-		// for ($i = 0; $i < $col; $i = $i + $MAX_RECORDS_PAGE) {
-		// 	$pagination[] = $i;
-		// }
+		$pagination = Array();
+		for ($i = 0; $i < $col; $i = $i + $MAX_RECORDS_PAGE) {
+			$pagination[] = $i;
+		}
 
-		//print_r($pagination);
+		// print_r($pagination);
 
 		$prev_page = $start_data - $MAX_RECORDS_PAGE;
 		if ($prev_page < 0)
@@ -788,44 +828,11 @@
 		
 		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
 		$list_rec_arr = Array();
-		$sensor_num = $sens_id;
-		$listlvlras_res = list_lvlras($sensor_num);
-		$listlvlras_arr = Array();
-		$A1 = 0; // X1
-		$A2 = 0; // X2
-		$B1 = 0; // Y1
-		$B2 = 0; // Y2
-
-		while($row = mysqli_fetch_assoc($listlvlras_res)) {
-			$listlvlras_arr[] = $row;
-			$massivlvl[] = $row['level']; // массив для X
-			$massivras[] = $row['rashod']; // массив для Y
-		};
-		$countmassiv = count($massivlvl); // счетчик для цикла
-	
-		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
-			$row['new_level'] =  1000 - $row['level'];   //$sensor_info_arr['high'] вместо 1000
-			if ($row['new_level'] > 0 ){
-				$lvl = $row['new_level'];
-				$j = $lvl;
-				for ($i = 0; $i < $countmassiv; $i++) {
-					if ($j > $massivlvl[$i]) {
-						$A1 = $massivlvl[$i];
-						$A2 = $massivlvl[$i+1];
-						$B1 = $massivras[$i];
-						$B2 = $massivras[$i+1];
-					};
-				};
-				$k = ($B2-$B1)/($A2-$A1);
-				$b = $B2 - $k*$A2;
-				$row['new_rashod'] = $row['new_level'] * $k + $b;
-			}else{
-				$row['new_rashod'] = 0;
-			};
-			
-			
+		
+		while ($row = mysqli_fetch_assoc($list_rec_obj)) {	
 			$list_rec_arr[] = $row;
 		};
+
 		$tpl->assign('listrec', $list_rec_arr);
 		$tpl->assign('sensor_info', $sensor_info_arr);
 		$tpl->assign('list_rashod', $listlvlras_arr);

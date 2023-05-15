@@ -81,7 +81,7 @@
             <tr>
               <td>{$item.id}</td>
               <td>{$item.new_level}</td>
-              <td>{$item.new_rashod}</td>
+              <td>{$item.rashod}</td>
               <td>{$item.date_insert}</td>
               <td>{$item.bat}</td>
             </tr>
