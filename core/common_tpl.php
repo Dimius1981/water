@@ -788,7 +788,7 @@
 		
 		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
 		$list_rec_arr = Array();
-		$sensor_num = 1; // Без него выдавал ошибку
+		$sensor_num = $sens_id;
 		$listlvlras_res = list_lvlras($sensor_num);
 		$listlvlras_arr = Array();
 		$A1 = 0; // X1
@@ -805,19 +805,25 @@
 	
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
 			$row['new_level'] =  1000 - $row['level'];   //$sensor_info_arr['high'] вместо 1000
-			$lvl = $row['new_level'];
-			$j = $lvl;
-			for ($i = 0; $i < $countmassiv; $i++) {
-			if ($j > $massivlvl[$i]) {
-				$A1 = $massivlvl[$i];
-				$A2 = $massivlvl[$i+1];
-				$B1 = $massivras[$i];
-				$B2 = $massivras[$i+1];
+			if ($row['new_level'] > 0 ){
+				$lvl = $row['new_level'];
+				$j = $lvl;
+				for ($i = 0; $i < $countmassiv; $i++) {
+					if ($j > $massivlvl[$i]) {
+						$A1 = $massivlvl[$i];
+						$A2 = $massivlvl[$i+1];
+						$B1 = $massivras[$i];
+						$B2 = $massivras[$i+1];
+					};
 				};
+				$k = ($B2-$B1)/($A2-$A1);
+				$b = $B2 - $k*$A2;
+				$row['new_rashod'] = $row['new_level'] * $k + $b;
+			}else{
+				$row['new_rashod'] = 0;
 			};
-			$k = ($B2-$B1)/($A2-$A1);
-			$b = $B2 - $k*$A2;
-			$row['new_rashod'] = $row['new_level'] * $k + $b;
+			
+			
 			$list_rec_arr[] = $row;
 		};
 		$tpl->assign('listrec', $list_rec_arr);
