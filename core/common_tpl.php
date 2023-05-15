@@ -788,21 +788,21 @@
 		
 		$list_rec_obj = list_records($sens_id, $start_data, $count_data);
 		$list_rec_arr = Array();
-		$sensor_num = 1;
+		$sensor_num = 1; // Без него выдавал ошибку
 		$listlvlras_res = list_lvlras($sensor_num);
 		$listlvlras_arr = Array();
-		$A1 = 0;
-		$A2 = 0;
-		$B1 = 0;
-		$B2 = 0;
+		$A1 = 0; // X1
+		$A2 = 0; // X2
+		$B1 = 0; // Y1
+		$B2 = 0; // Y2
 
 		while($row = mysqli_fetch_assoc($listlvlras_res)) {
 			$listlvlras_arr[] = $row;
-			$massivlvl[] = $row['level'];
-			$massivras[] = $row['rashod'];
+			$massivlvl[] = $row['level']; // массив для X
+			$massivras[] = $row['rashod']; // массив для Y
 		};
-		$countmassiv = count($massivlvl);
-		$i = 0;
+		$countmassiv = count($massivlvl); // счетчик для цикла
+	
 		while ($row = mysqli_fetch_assoc($list_rec_obj)) {
 			$row['new_level'] =  1000 - $row['level'];   //$sensor_info_arr['high'] вместо 1000
 			$lvl = $row['new_level'];
