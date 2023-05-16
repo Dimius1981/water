@@ -428,7 +428,7 @@
 		$countmassiv = count($massivlvl); 
 
 		//Условие к уравенинию прямой
-		if ($new_level > 0 ){
+		if ($new_level >= $massivlvl[0] && $new_level <= end($massivlvl)){
 			$j = $new_level;
 			for ($i = 0; $i < $countmassiv; $i++) {
 				if ($j > $massivlvl[$i]) {
@@ -436,11 +436,13 @@
 					$A2 = $massivlvl[$i+1];
 					$B1 = $massivras[$i];
 					$B2 = $massivras[$i+1];
+					$k = ($B2-$B1)/($A2-$A1);
+					$b = $B2 - $k*$A2;
+					$rashod = $new_level * $k + $b;
+				}else if($j == $massivlvl[$i]){
+					$rashod = $massivras[$i];
 				};
 			};
-			$k = ($B2-$B1)/($A2-$A1);
-			$b = $B2 - $k*$A2;
-			$rashod = $new_level * $k + $b;
 		}else{
 			$rashod = 0;
 		};
