@@ -70,7 +70,7 @@
           <thead class="table">
             <tr>
               <th>ID</th>
-              <th>Уровень, см.</th>
+              <th>Уровень, см. </br>(H = {$sensor_info.high}см)</th>
               <th>Расход, м<sup>3</sup></th>
               <th>Дата и время</th>
               <th>Заряд акк.</th>
@@ -80,7 +80,7 @@
             {foreach $listrec as $item}
             <tr>
               <td>{$item.id}</td>
-              <td>{$item.new_level}</td>
+              <td>{$item.level} / {$item.new_level}</td>
               <td>{$item.rashod}</td>
               <td>{$item.date_insert}</td>
               <td>{$item.bat}</td>
